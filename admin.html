@@ -162,8 +162,15 @@
                         <input required type="number" id="dish-price" class="w-full heritage-input py-2 px-0" placeholder="e.g. 580"/>
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-primary uppercase tracking-widest mb-1">Image URL (Optional)</label>
-                        <input type="text" id="dish-image" class="w-full heritage-input py-2 px-0" placeholder="e.g. https://..."/>
+                        <label class="block text-xs font-bold text-primary uppercase tracking-widest mb-1">Dish Image (File or URL)</label>
+                        <div class="flex gap-2 items-center">
+                            <input type="text" id="dish-image" class="w-full heritage-input py-2 px-0 flex-grow" placeholder="Paste URL or upload file..."/>
+                            <label class="cursor-pointer bg-outline-variant/35 text-on-surface text-xs font-bold px-3 py-2 rounded hover:bg-outline-variant/60 transition-colors uppercase tracking-wider shrink-0 flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[16px]">upload_file</span>
+                                Upload
+                                <input type="file" id="dish-image-file" accept="image/*" class="hidden" onchange="handleImageUpload(this, 'dish-image')"/>
+                            </label>
+                        </div>
                     </div>
                     <div>
                         <label class="block text-xs font-bold text-primary uppercase tracking-widest mb-1">Tag (Optional)</label>
@@ -339,8 +346,15 @@
                     <input required type="number" id="edit-price" class="w-full heritage-input py-2 px-0"/>
                 </div>
                 <div>
-                    <label class="block text-xs font-bold text-primary uppercase tracking-widest mb-1">Image URL</label>
-                    <input type="text" id="edit-image" class="w-full heritage-input py-2 px-0"/>
+                    <label class="block text-xs font-bold text-primary uppercase tracking-widest mb-1">Dish Image (File or URL)</label>
+                    <div class="flex gap-2 items-center">
+                        <input type="text" id="edit-image" class="w-full heritage-input py-2 px-0 flex-grow" placeholder="Paste URL or upload file..."/>
+                        <label class="cursor-pointer bg-outline-variant/35 text-on-surface text-xs font-bold px-3 py-2 rounded hover:bg-outline-variant/60 transition-colors uppercase tracking-wider shrink-0 flex items-center gap-1">
+                            <span class="material-symbols-outlined text-[16px]">upload_file</span>
+                            Upload
+                            <input type="file" id="edit-image-file" accept="image/*" class="hidden" onchange="handleImageUpload(this, 'edit-image')"/>
+                        </label>
+                    </div>
                 </div>
             </div>
             
@@ -752,6 +766,51 @@
             GulabGanjStore.deleteCategory(id);
             initDashboard();
         }
+    };
+
+    window.handleImageUpload = function (fileInput, textInputId) {
+        const file = fileInput.files[0];
+        if (!file) return;
+
+        if (!file.type.startsWith('image/')) {
+            alert('Please select an image file.');
+            return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            const img = new Image();
+            img.onload = function () {
+                const MAX_WIDTH = 800;
+                const MAX_HEIGHT = 800;
+                let width = img.width;
+                let height = img.height;
+
+                if (width > height) {
+                    if (width > MAX_WIDTH) {
+                        height *= MAX_WIDTH / width;
+                        width = MAX_WIDTH;
+                    }
+                } else {
+                    if (height > MAX_HEIGHT) {
+                        width *= MAX_HEIGHT / height;
+                        height = MAX_HEIGHT;
+                    }
+                }
+
+                const canvas = document.createElement('canvas');
+                canvas.width = width;
+                canvas.height = height;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(img, 0, 0, width, height);
+
+                const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.7);
+                document.getElementById(textInputId).value = compressedDataUrl;
+                fileInput.value = ''; // clear input
+            };
+            img.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
     };
 
     // Listen to changes in the database and re-render if logged in
