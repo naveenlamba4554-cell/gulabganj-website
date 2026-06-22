@@ -1,0 +1,19 @@
+# Ignore zip files
+*.zip
+
+# Ignore extracted/temporary directories
+extracted_1/
+extracted_3/
+extracted_4/
+extracted_main/
+
+# Intermediate analysis & source HTML files
+code_orig.html
+code_1.html
+code_3.html
+analyze.py
+
+# OS specific files
+.DS_Store
+Thumbs.db
+Desktop.ini

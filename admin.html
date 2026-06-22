@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>THE GULAB GANJ | Admin Dashboard</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "background": "#fff8f6",
+                        "surface": "#fff8f6",
+                        "surface-dim": "#f2d4c8",
+                        "surface-bright": "#fff8f6",
+                        "primary": "#910619",
+                        "primary-container": "#b3262d",
+                        "on-primary": "#ffffff",
+                        "secondary": "#bb0318",
+                        "secondary-container": "#df2a2e",
+                        "on-secondary": "#ffffff",
+                        "tertiary": "#78301d",
+                        "on-surface": "#281811",
+                        "on-surface-variant": "#5a403f",
+                        "outline": "#8e706e",
+                        "outline-variant": "#e2bebc",
+                        "surface-container-low": "#fff1ec",
+                        "surface-container": "#ffe9e2",
+                        "surface-container-high": "#ffe2d7",
+                        "surface-container-highest": "#fbdcd0",
+                        "surface-container-lowest": "#ffffff"
+                    },
+                    fontFamily: {
+                        "display": ["Playfair Display"],
+                        "body": ["Inter"]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .pattern-bg {
+            background-image: radial-gradient(circle at 2px 2px, rgba(145, 6, 25, 0.03) 1px, transparent 0);
+            background-size: 24px 24px;
+        }
+        .heritage-input {
+            background: transparent;
+            border-top: 0;
+            border-left: 0;
+            border-right: 0;
+            border-bottom: 1px solid #8e706e;
+            color: #281811;
+        }
+        .heritage-input:focus {
+            outline: none;
+            box-shadow: none;
+            border-color: #910619;
+            ring: 0;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body min-h-screen pattern-bg">
+
+<!-- Auth Overlay (Login) -->
+<div id="login-overlay" class="fixed inset-0 z-50 bg-background flex items-center justify-center p-4">
+    <div class="w-full max-w-md bg-surface-container-low border border-outline-variant p-8 rounded shadow-md space-y-6">
+        <div class="text-center space-y-2">
+            <span class="font-display text-headline-sm text-primary uppercase tracking-widest block">THE GULAB GANJ</span>
+            <h2 class="text-xl font-semibold text-on-surface">Admin Portal Login</h2>
+            <div class="h-[1px] bg-gradient-to-r from-transparent via-outline/30 to-transparent w-32 mx-auto"></div>
+        </div>
+        
+        <form id="login-form" class="space-y-6">
+            <div>
+                <label class="block text-xs font-bold text-primary uppercase tracking-widest mb-1">Username</label>
+                <input required type="text" id="username" class="w-full heritage-input py-2 px-0" placeholder="e.g. admin"/>
+            </div>
+            <div>
+                <label class="block text-xs font-bold text-primary uppercase tracking-widest mb-1">Password</label>
+                <input required type="password" id="password" class="w-full heritage-input py-2 px-0" placeholder="••••••••"/>
+            </div>
+            
+            <p id="login-error" class="text-red-700 text-xs font-semibold hidden">Invalid credentials. Please try again.</p>
+            
+            <button type="submit" class="w-full bg-primary text-on-primary font-bold py-3 rounded hover:bg-primary-container transition-colors uppercase tracking-widest text-sm shadow">
+                Sign In
+            </button>
+        </form>
+    </div>
+</div>
+
+<!-- Main Admin Panel Dashboard -->
+<div id="admin-dashboard" class="hidden min-h-screen flex flex-col md:flex-row">
+    <!-- Sidebar Navigation -->
+    <aside class="w-full md:w-64 bg-surface-container border-b md:border-b-0 md:border-r border-outline-variant/40 flex flex-col p-6 space-y-6">
+        <div class="border-b border-outline-variant/40 pb-4 text-center md:text-left">
+            <span class="font-display text-headline-sm text-primary uppercase tracking-widest block">THE GULAB GANJ</span>
+            <span class="text-xs text-on-surface-variant font-medium">Control Center</span>
+        </div>
+        
+        <nav class="flex flex-row md:flex-col space-y-0 md:space-y-2 space-x-2 md:space-x-0 overflow-x-auto md:overflow-x-visible pb-2 md:pb-0 flex-grow font-semibold text-sm">
+            <button data-target="tab-menu" class="tab-btn w-full text-left px-4 py-3 rounded bg-primary text-on-primary hover:bg-primary-container transition-colors flex items-center gap-3">
+                <span class="material-symbols-outlined text-[20px]">restaurant_menu</span>
+                Menu Items
+            </button>
+            <button data-target="tab-contact" class="tab-btn w-full text-left px-4 py-3 rounded text-on-surface-variant hover:bg-outline-variant/20 transition-colors flex items-center gap-3">
+                <span class="material-symbols-outlined text-[20px]">contact_phone</span>
+                Contact Info
+            </button>
+            <button data-target="tab-reviews" class="tab-btn w-full text-left px-4 py-3 rounded text-on-surface-variant hover:bg-outline-variant/20 transition-colors flex items-center gap-3">
+                <span class="material-symbols-outlined text-[20px]">reviews</span>
+                Reviews
+            </button>
+            <button data-target="tab-categories" class="tab-btn w-full text-left px-4 py-3 rounded text-on-surface-variant hover:bg-outline-variant/20 transition-colors flex items-center gap-3">
+                <span class="material-symbols-outlined text-[20px]">category</span>
+                Categories
+            </button>
+        </nav>
+        
+        <div class="border-t border-outline-variant/40 pt-4">
+            <button id="logout-btn" class="w-full bg-transparent border border-primary text-primary px-4 py-2.5 rounded hover:bg-primary-container hover:text-on-primary transition-all font-semibold text-xs uppercase tracking-wider flex items-center justify-center gap-2">
+                <span class="material-symbols-outlined text-[16px]">logout</span>
+                Logout
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow p-6 md:p-10 max-w-5xl mx-auto w-full">
+        <!-- TAB 1: MENU MANAGER -->
+        <section id="tab-menu" class="tab-content space-y-8">
+            <div class="flex justify-between items-center border-b border-outline-variant/30 pb-4">
+                <h1 class="font-display text-2xl text-on-surface">Menu Items Management</h1>
+                <span class="text-xs text-on-surface-variant">Manage food and beverages</span>
+            </div>
+            
+            <!-- Add Item Form -->
+            <div class="bg-surface-container-low border border-outline-variant/40 p-6 rounded shadow-sm">
+                <h2 class="font-display text-lg text-primary mb-4 flex items-center gap-2">
+                    <span class="material-symbols-outlined">add_circle</span> Add New Dish
+                </h2>
+                
+                <form id="add-item-form" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div>
+                        <label class="block text-xs font-bold text-primary uppercase tracking-widest mb-1">Dish Name</label>
+                        <input required type="text" id="dish-name" class="w-full heritage-input py-2 px-0" placeholder="e.g. Paneer Pasanda"/>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-primary uppercase tracking-widest mb-1">Category</label>
+                        <select id="dish-category" class="w-full heritage-input py-2 px-0 bg-transparent">
+                            <!-- Populated dynamically -->
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-primary uppercase tracking-widest mb-1">Price (₹)</label>
+                        <input required type="number" id="dish-price" class="w-full heritage-input py-2 px-0" placeholder="e.g. 580"/>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-primary uppercase tracking-widest mb-1">Image URL (Optional)</label>
+                        <input type="text" id="dish-image" class="w-full heritage-input py-2 px-0" placeholder="e.g. https://..."/>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-primary uppercase tracking-widest mb-1">Tag (Optional)</label>
+                        <input type="text" id="dish-tag" class="w-full heritage-input py-2 px-0" placeholder="e.g. Signature, Chef's Special"/>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-primary uppercase tracking-widest mb-1">Key elements (Optional)</label>
+                        <input type="text" id="dish-elements" class="w-full heritage-input py-2 px-0" placeholder="e.g. Cashews, Saffron"/>
+                    </div>
+                    <div class="md:col-span-3">
+                        <label class="block text-xs font-bold text-primary uppercase tracking-widest mb-1">Description</label>
+                        <input required type="text" id="dish-desc" class="w-full heritage-input py-2 px-0" placeholder="Provide a brief description of the dish ingredients and taste."/>
+                    </div>
+                    
+                    <div class="md:col-span-3 flex justify-end">
+                        <button type="submit" class="bg-primary text-on-primary px-8 py-3 rounded hover:bg-primary-container transition-colors font-bold uppercase text-xs tracking-wider shadow">
+                            Save Dish
+                        </button>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Items Table -->
+            <div class="bg-surface-container-low border border-outline-variant/40 rounded overflow-hidden shadow-sm">
+                <div class="px-6 py-4 bg-outline-variant/10 border-b border-outline-variant/40">
+                    <h3 class="font-semibold text-on-surface text-sm uppercase tracking-wider">Active Dishes</h3>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse text-sm">
+                        <thead>
+                            <tr class="bg-surface-container-high border-b border-outline-variant/30 text-on-surface-variant font-bold text-xs uppercase tracking-wider">
+                                <th class="py-3 px-4">Name</th>
+                                <th class="py-3 px-4">Category</th>
+                                <th class="py-3 px-4">Price</th>
+                                <th class="py-3 px-4">Tag</th>
+                                <th class="py-3 px-4">Image</th>
+                                <th class="py-3 px-4 text-center">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="menu-table-body">
+                            <!-- Items list rendered dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 2: CONTACT INFO MANAGER -->
+        <section id="tab-contact" class="tab-content space-y-8 hidden">
+            <div class="flex justify-between items-center border-b border-outline-variant/30 pb-4">
+                <h1 class="font-display text-2xl text-on-surface">Contact Information Management</h1>
+                <span class="text-xs text-on-surface-variant">Update flagship branch details</span>
+            </div>
+            
+            <div class="bg-surface-container-low border border-outline-variant/40 p-8 rounded shadow-sm max-w-2xl">
+                <form id="contact-form" class="space-y-6">
+                    <div>
+                        <label class="block text-xs font-bold text-primary uppercase tracking-widest mb-1">Telephone Line(s)</label>
+                        <input required type="text" id="contact-phone" class="w-full heritage-input py-2 px-0" placeholder="e.g. +91 98765 43210"/>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-primary uppercase tracking-widest mb-1">Email Address</label>
+                        <input required type="email" id="contact-email" class="w-full heritage-input py-2 px-0" placeholder="e.g. info@gulabganj.com"/>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-primary uppercase tracking-widest mb-1">Opening Hours</label>
+                        <input required type="text" id="contact-hours" class="w-full heritage-input py-2 px-0" placeholder="e.g. Daily: 11 AM - 11 PM"/>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-primary uppercase tracking-widest mb-1">Store Address</label>
+                        <textarea required id="contact-address" rows="3" class="w-full bg-transparent border border-outline-variant focus:border-primary focus:ring-0 text-on-surface p-3 mt-1 rounded text-sm transition-colors" placeholder="e.g. Circular Road, Rewari"></textarea>
+                    </div>
+                    
+                    <div class="flex justify-end">
+                        <button type="submit" class="bg-primary text-on-primary px-8 py-3 rounded hover:bg-primary-container transition-colors font-bold uppercase text-xs tracking-wider shadow">
+                            Save Changes
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- TAB 3: REVIEWS MANAGER -->
+        <section id="tab-reviews" class="tab-content space-y-8 hidden">
+            <div class="flex justify-between items-center border-b border-outline-variant/30 pb-4">
+                <h1 class="font-display text-2xl text-on-surface">Customer Reviews Manager</h1>
+                <span class="text-xs text-on-surface-variant">Respond to or delete user reviews</span>
+            </div>
+            
+            <div id="admin-reviews-list" class="space-y-6">
+                <!-- Reviews list rendered dynamically -->
+            </div>
+        </section>
+
+        <!-- TAB 4: CATEGORY MANAGER -->
+        <section id="tab-categories" class="tab-content space-y-8 hidden">
+            <div class="flex justify-between items-center border-b border-outline-variant/30 pb-4">
+                <h1 class="font-display text-2xl text-on-surface">Menu Categories Management</h1>
+                <span class="text-xs text-on-surface-variant">Add, edit, or delete menu categories</span>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+                <!-- Add Category Form -->
+                <div class="lg:col-span-1 bg-surface-container-low border border-outline-variant/40 p-6 rounded shadow-sm">
+                    <h2 class="font-display text-lg text-primary mb-4 flex items-center gap-2">
+                        <span class="material-symbols-outlined">add_circle</span> Add Category
+                    </h2>
+                    
+                    <form id="add-category-form" class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-bold text-primary uppercase tracking-widest mb-1">Category Name</label>
+                            <input required type="text" id="new-category-name" class="w-full heritage-input py-2 px-0" placeholder="e.g. Sizzlers & Platters"/>
+                        </div>
+                        <button type="submit" class="w-full bg-primary text-on-primary py-2.5 rounded hover:bg-primary-container transition-colors font-bold uppercase text-xs tracking-wider shadow">
+                            Add Category
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Categories List Table -->
+                <div class="lg:col-span-2 bg-surface-container-low border border-outline-variant/40 rounded overflow-hidden shadow-sm">
+                    <div class="px-6 py-4 bg-outline-variant/10 border-b border-outline-variant/40">
+                        <h3 class="font-semibold text-on-surface text-sm uppercase tracking-wider">Active Categories</h3>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse text-sm">
+                            <thead>
+                                <tr class="bg-surface-container-high border-b border-outline-variant/30 text-on-surface-variant font-bold text-xs uppercase tracking-wider">
+                                    <th class="py-3 px-4">Category Name</th>
+                                    <th class="py-3 px-4">Slug ID</th>
+                                    <th class="py-3 px-4 text-center">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="category-table-body">
+                                <!-- Dynamic Categories -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+
+<!-- Edit Menu Item Modal -->
+<div id="edit-item-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 hidden">
+    <div class="w-full max-w-lg bg-surface border border-outline-variant p-8 rounded shadow-xl space-y-6">
+        <div class="flex justify-between items-center border-b border-outline-variant/30 pb-3">
+            <h3 class="font-display text-lg text-primary">Edit Menu Item</h3>
+            <button id="close-modal-btn" class="text-on-surface-variant hover:text-on-surface p-1">
+                <span class="material-symbols-outlined text-[24px]">close</span>
+            </button>
+        </div>
+        
+        <form id="edit-item-form" class="space-y-6">
+            <input type="hidden" id="edit-id"/>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div>
+                    <label class="block text-xs font-bold text-primary uppercase tracking-widest mb-1">Dish Name</label>
+                    <input required type="text" id="edit-name" class="w-full heritage-input py-2 px-0"/>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-primary uppercase tracking-widest mb-1">Category</label>
+                    <select id="edit-category" class="w-full heritage-input py-2 px-0 bg-transparent">
+                        <!-- Populated dynamically -->
+                    </select>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div>
+                    <label class="block text-xs font-bold text-primary uppercase tracking-widest mb-1">Price (₹)</label>
+                    <input required type="number" id="edit-price" class="w-full heritage-input py-2 px-0"/>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-primary uppercase tracking-widest mb-1">Image URL</label>
+                    <input type="text" id="edit-image" class="w-full heritage-input py-2 px-0"/>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div>
+                    <label class="block text-xs font-bold text-primary uppercase tracking-widest mb-1">Tag</label>
+                    <input type="text" id="edit-tag" class="w-full heritage-input py-2 px-0"/>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-primary uppercase tracking-widest mb-1">Key Elements</label>
+                    <input type="text" id="edit-elements" class="w-full heritage-input py-2 px-0"/>
+                </div>
+            </div>
+            
+            <div>
+                <label class="block text-xs font-bold text-primary uppercase tracking-widest mb-1">Description</label>
+                <input required type="text" id="edit-desc" class="w-full heritage-input py-2 px-0"/>
+            </div>
+            
+            <div class="flex justify-end gap-3 pt-3 border-t border-outline-variant/30">
+                <button type="button" onclick="document.getElementById('edit-item-modal').classList.add('hidden')" class="border border-outline text-on-surface px-6 py-2.5 rounded font-bold uppercase text-xs hover:bg-outline-variant/20 transition-colors">
+                    Cancel
+                </button>
+                <button type="submit" class="bg-primary text-on-primary px-6 py-2.5 rounded font-bold uppercase text-xs hover:bg-primary-container transition-colors shadow">
+                    Save Dish
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Load Database Central Store Script -->
+<script src="js/data-store.js"></script>
+<script>
+    // Auth Logic
+    const overlay = document.getElementById('login-overlay');
+    const dashboard = document.getElementById('admin-dashboard');
+    const loginForm = document.getElementById('login-form');
+    const errorMsg = document.getElementById('login-error');
+
+    // Check persistent session
+    if (sessionStorage.getItem('gg_admin_logged_in') === 'true') {
+        overlay.classList.add('hidden');
+        dashboard.classList.remove('hidden');
+        initDashboard();
+    }
+
+    loginForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const user = document.getElementById('username').value.trim();
+        const pass = document.getElementById('password').value.trim();
+
+        if (user === 'admin' && pass === 'gulabganj123') {
+            sessionStorage.setItem('gg_admin_logged_in', 'true');
+            overlay.classList.add('hidden');
+            dashboard.classList.remove('hidden');
+            initDashboard();
+        } else {
+            errorMsg.classList.remove('hidden');
+        }
+    });
+
+    document.getElementById('logout-btn').addEventListener('click', () => {
+        sessionStorage.removeItem('gg_admin_logged_in');
+        overlay.classList.remove('hidden');
+        dashboard.classList.add('hidden');
+        document.getElementById('username').value = '';
+        document.getElementById('password').value = '';
+    });
+
+    // Dashboard Tabs Navigation
+    const tabs = document.querySelectorAll('.tab-btn');
+    const screens = document.querySelectorAll('.tab-content');
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            tabs.forEach(t => {
+                t.classList.remove('bg-primary', 'text-on-primary');
+                t.classList.add('text-on-surface-variant', 'hover:bg-outline-variant/20');
+            });
+            tab.classList.add('bg-primary', 'text-on-primary');
+            tab.classList.remove('text-on-surface-variant', 'hover:bg-outline-variant/20');
+
+            const target = tab.getAttribute('data-target');
+            screens.forEach(screen => {
+                if (screen.id === target) {
+                    screen.classList.remove('hidden');
+                } else {
+                    screen.classList.add('hidden');
+                }
+            });
+        });
+    });
+
+    function initDashboard() {
+        populateCategorySelects();
+        renderMenuTable();
+        renderCategoriesTable();
+        renderReviewsList();
+        populateContactForm();
+    }
+
+    // --- MENU MANAGER ---
+    function renderMenuTable() {
+        const tbody = document.getElementById('menu-table-body');
+        tbody.innerHTML = '';
+
+        const items = GulabGanjStore.getMenuItems();
+        const categories = GulabGanjStore.getCategories();
+        
+        items.forEach(item => {
+            const tr = document.createElement('tr');
+            tr.className = 'border-b border-outline-variant/20 hover:bg-outline-variant/10 transition-colors';
+            
+            let imgHTML = '';
+            if (item.image) {
+                imgHTML = `<img src="${item.image}" class="h-8 w-8 object-contain rounded bg-surface shadow-sm">`;
+            } else {
+                imgHTML = `<span class="material-symbols-outlined text-outline-variant text-[20px]">flatware</span>`;
+            }
+
+            const catObj = categories.find(c => c.id === item.category);
+            const catName = catObj ? catObj.name : item.category;
+
+            tr.innerHTML = `
+                <td class="py-3 px-4 font-semibold text-on-surface">${item.name}</td>
+                <td class="py-3 px-4 capitalize text-on-surface-variant">${catName}</td>
+                <td class="py-3 px-4 text-primary font-bold">₹${item.price}</td>
+                <td class="py-3 px-4">
+                    ${item.tag ? `<span class="bg-primary/10 text-primary border border-primary/20 px-2.5 py-0.5 rounded text-[10px] uppercase font-bold">${item.tag}</span>` : '<span class="text-on-surface-variant/40">-</span>'}
+                </td>
+                <td class="py-3 px-4">${imgHTML}</td>
+                <td class="py-3 px-4 text-center space-x-3">
+                    <button onclick="openEditModal('${item.id}')" class="text-primary hover:text-secondary font-bold text-xs uppercase tracking-wide">Edit</button>
+                    <button onclick="deleteMenuItem('${item.id}')" class="text-tertiary hover:text-red-700 font-bold text-xs uppercase tracking-wide">Delete</button>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        });
+    }
+
+    document.getElementById('add-item-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('dish-name').value.trim();
+        const category = document.getElementById('dish-category').value;
+        const price = parseInt(document.getElementById('dish-price').value);
+        const image = document.getElementById('dish-image').value.trim();
+        const tag = document.getElementById('dish-tag').value.trim();
+        const elements = document.getElementById('dish-elements').value.trim();
+        const description = document.getElementById('dish-desc').value.trim();
+
+        const items = GulabGanjStore.getMenuItems();
+        const newItem = {
+            id: name.toLowerCase().replace(/\s+/g, '-'),
+            name: name,
+            category: category,
+            price: price,
+            image: image,
+            description: description,
+            tag: tag,
+            elements: elements
+        };
+
+        items.push(newItem);
+        GulabGanjStore.saveMenuItems(items);
+        document.getElementById('add-item-form').reset();
+        renderMenuTable();
+    });
+
+    window.deleteMenuItem = function (id) {
+        if (confirm('Are you sure you want to delete this menu item?')) {
+            let items = GulabGanjStore.getMenuItems();
+            items = items.filter(item => item.id !== id);
+            GulabGanjStore.saveMenuItems(items);
+            renderMenuTable();
+        }
+    };
+
+    const modal = document.getElementById('edit-item-modal');
+    const editForm = document.getElementById('edit-item-form');
+
+    window.openEditModal = function (id) {
+        const items = GulabGanjStore.getMenuItems();
+        const item = items.find(i => i.id === id);
+        if (!item) return;
+
+        document.getElementById('edit-id').value = item.id;
+        document.getElementById('edit-name').value = item.name;
+        document.getElementById('edit-category').value = item.category;
+        document.getElementById('edit-price').value = item.price;
+        document.getElementById('edit-image').value = item.image || '';
+        document.getElementById('edit-tag').value = item.tag || '';
+        document.getElementById('edit-elements').value = item.elements || '';
+        document.getElementById('edit-desc').value = item.description;
+
+        modal.classList.remove('hidden');
+    };
+
+    document.getElementById('close-modal-btn').addEventListener('click', () => {
+        modal.classList.add('hidden');
+    });
+
+    editForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const id = document.getElementById('edit-id').value;
+        const name = document.getElementById('edit-name').value.trim();
+        const category = document.getElementById('edit-category').value;
+        const price = parseInt(document.getElementById('edit-price').value);
+        const image = document.getElementById('edit-image').value.trim();
+        const tag = document.getElementById('edit-tag').value.trim();
+        const elements = document.getElementById('edit-elements').value.trim();
+        const description = document.getElementById('edit-desc').value.trim();
+
+        const items = GulabGanjStore.getMenuItems();
+        const idx = items.findIndex(i => i.id === id);
+        if (idx !== -1) {
+            items[idx] = { ...items[idx], name, category, price, image, tag, elements, description };
+            GulabGanjStore.saveMenuItems(items);
+            modal.classList.add('hidden');
+            renderMenuTable();
+        }
+    });
+
+    // --- REVIEWS MANAGER ---
+    function renderReviewsList() {
+        const list = document.getElementById('admin-reviews-list');
+        list.innerHTML = '';
+
+        const reviews = GulabGanjStore.getReviews();
+        if (reviews.length === 0) {
+            list.innerHTML = `
+                <div class="text-sm italic text-on-surface-variant/70 text-center py-4">
+                    No customer reviews received yet.
+                </div>
+            `;
+            return;
+        }
+
+        reviews.forEach(review => {
+            const card = document.createElement('div');
+            card.className = 'border border-outline-variant/30 rounded p-6 bg-surface-container-low/60 space-y-4';
+            
+            let starsHTML = '';
+            for (let i = 1; i <= 5; i++) {
+                starsHTML += `<span class="material-symbols-outlined text-[16px] text-amber-500" style="font-variation-settings: 'FILL' ${i <= review.rating ? 1 : 0};">star</span>`;
+            }
+
+            card.innerHTML = `
+                <div class="flex justify-between items-start">
+                    <div>
+                        <span class="font-bold text-on-surface text-base block">${review.name}</span>
+                        <span class="text-[10px] text-on-surface-variant/60">${review.date}</span>
+                    </div>
+                    <div class="flex items-center">
+                        ${starsHTML}
+                    </div>
+                </div>
+                <p class="text-sm text-on-surface-variant leading-relaxed">${review.comment}</p>
+                
+                <div class="pt-4 border-t border-outline-variant/20 flex flex-col gap-3">
+                    ${review.reply ? `
+                        <div class="bg-primary/5 border border-primary/20 rounded p-3 text-xs text-on-surface-variant relative">
+                            <span class="font-bold text-primary block mb-1 flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[14px]">verified</span>
+                                Official Reply
+                            </span>
+                            ${review.reply}
+                            <button onclick="deleteReply(${review.id})" class="absolute right-3 top-3 text-tertiary hover:text-red-700 font-bold text-[10px] uppercase tracking-wide">Delete Reply</button>
+                        </div>
+                    ` : `
+                        <div class="flex items-center gap-4">
+                            <input type="text" id="reply-text-${review.id}" placeholder="Type reply from management..." class="heritage-input text-xs px-2 py-2 flex-grow">
+                            <button onclick="submitReply(${review.id})" class="bg-primary text-on-primary px-4 py-2 rounded font-bold text-[10px] uppercase tracking-wider shadow hover:bg-primary-container transition-colors">
+                                Post Reply
+                            </button>
+                        </div>
+                    `}
+                    <div class="flex justify-end">
+                        <button onclick="deleteReview(${review.id})" class="text-tertiary hover:text-red-700 font-bold text-xs uppercase flex items-center gap-1">
+                            <span class="material-symbols-outlined text-[16px]">delete</span> Delete Review
+                        </button>
+                    </div>
+                </div>
+            `;
+            list.appendChild(card);
+        });
+    }
+
+    window.submitReply = function (id) {
+        const input = document.getElementById(`reply-text-${id}`);
+        const text = input.value.trim();
+        if (text) {
+            GulabGanjStore.addReply(id, text);
+            renderReviewsList();
+        }
+    };
+
+    window.deleteReply = function (id) {
+        if (confirm('Delete the reply to this review?')) {
+            GulabGanjStore.addReply(id, '');
+            renderReviewsList();
+        }
+    };
+
+    window.deleteReview = function (id) {
+        if (confirm('Are you sure you want to delete this customer review permanently?')) {
+            GulabGanjStore.deleteReview(id);
+            renderReviewsList();
+        }
+    };
+
+    // --- CONTACT MANAGER ---
+    function populateContactForm() {
+        const info = GulabGanjStore.getContactInfo();
+        document.getElementById('contact-phone').value = info.phone;
+        document.getElementById('contact-email').value = info.email;
+        document.getElementById('contact-hours').value = info.hours;
+        document.getElementById('contact-address').value = info.address;
+    }
+
+    document.getElementById('contact-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const phone = document.getElementById('contact-phone').value.trim();
+        const email = document.getElementById('contact-email').value.trim();
+        const hours = document.getElementById('contact-hours').value.trim();
+        const address = document.getElementById('contact-address').value.trim();
+
+        const info = { phone, email, hours, address };
+        GulabGanjStore.saveContactInfo(info);
+        alert('Contact details updated successfully!');
+        initDashboard();
+    });
+
+    // --- CATEGORIES MANAGER ---
+    function populateCategorySelects() {
+        const categories = GulabGanjStore.getCategories();
+        const addSelect = document.getElementById('dish-category');
+        const editSelect = document.getElementById('edit-category');
+
+        if (addSelect) {
+            addSelect.innerHTML = '';
+            categories.forEach(cat => {
+                addSelect.innerHTML += `<option value="${cat.id}">${cat.name}</option>`;
+            });
+        }
+        if (editSelect) {
+            editSelect.innerHTML = '';
+            categories.forEach(cat => {
+                editSelect.innerHTML += `<option value="${cat.id}">${cat.name}</option>`;
+            });
+        }
+    }
+
+    function renderCategoriesTable() {
+        const tbody = document.getElementById('category-table-body');
+        if (!tbody) return;
+        tbody.innerHTML = '';
+
+        const categories = GulabGanjStore.getCategories();
+        categories.forEach(cat => {
+            const tr = document.createElement('tr');
+            tr.className = 'border-b border-outline-variant/20 hover:bg-outline-variant/10 transition-colors';
+            tr.innerHTML = `
+                <td class="py-3 px-4 font-semibold text-on-surface">${cat.name}</td>
+                <td class="py-3 px-4 text-xs font-mono text-on-surface-variant">${cat.id}</td>
+                <td class="py-3 px-4 text-center space-x-3">
+                    <button onclick="editCategoryName('${cat.id}')" class="text-primary hover:text-secondary font-bold text-xs uppercase tracking-wide">Rename</button>
+                    <button onclick="deleteCategory('${cat.id}')" class="text-tertiary hover:text-red-700 font-bold text-xs uppercase tracking-wide">Delete</button>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        });
+    }
+
+    document.getElementById('add-category-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('new-category-name').value.trim();
+        if (name) {
+            const success = GulabGanjStore.addCategory(name);
+            if (success) {
+                document.getElementById('new-category-name').value = '';
+                initDashboard();
+            } else {
+                alert('A category with a similar name/ID already exists.');
+            }
+        }
+    });
+
+    window.editCategoryName = function (id) {
+        const categories = GulabGanjStore.getCategories();
+        const cat = categories.find(c => c.id === id);
+        if (!cat) return;
+        const newName = prompt("Enter new name for the category:", cat.name);
+        if (newName && newName.trim() && newName.trim() !== cat.name) {
+            GulabGanjStore.updateCategory(id, newName.trim());
+            initDashboard();
+        }
+    };
+
+    window.deleteCategory = function (id) {
+        const items = GulabGanjStore.getMenuItems();
+        const count = items.filter(item => item.category === id).length;
+        if (count > 0) {
+            alert(`Cannot delete category. There are ${count} menu items in this category. Reassign or delete those items first.`);
+            return;
+        }
+
+        if (confirm('Are you sure you want to delete this category?')) {
+            GulabGanjStore.deleteCategory(id);
+            initDashboard();
+        }
+    };
+
+    // Listen to changes in the database and re-render if logged in
+    window.addEventListener("gg_store_updated", () => {
+        if (sessionStorage.getItem('gg_admin_logged_in') === 'true') {
+            initDashboard();
+        }
+    });
+</script>
+</body>
+</html>

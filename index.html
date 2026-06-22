@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>THE GULAB GANJ | Pure Vegetarian Heritage Dining</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-highest": "#fbdcd0",
+                        "on-secondary-container": "#fffbff",
+                        "outline-variant": "#e2bebc",
+                        "secondary-container": "#df2a2e",
+                        "on-primary-container": "#ffccc8",
+                        "background": "#fff8f6",
+                        "surface-container": "#ffe9e2",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-fixed": "#3c0800",
+                        "secondary": "#bb0318",
+                        "surface-container-high": "#ffe2d7",
+                        "surface-bright": "#fff8f6",
+                        "tertiary-fixed-dim": "#ffb4a2",
+                        "primary-container": "#b3262d",
+                        "surface-dim": "#f2d4c8",
+                        "on-secondary": "#ffffff",
+                        "outline": "#8e706e",
+                        "secondary-fixed": "#ffdad6",
+                        "error": "#ba1a1a",
+                        "on-primary": "#ffffff",
+                        "on-primary-fixed-variant": "#910619",
+                        "surface-variant": "#fbdcd0",
+                        "surface": "#fff8f6",
+                        "primary-fixed-dim": "#ffb3af",
+                        "tertiary": "#78301d",
+                        "secondary-fixed-dim": "#ffb3ac",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed": "#410005",
+                        "tertiary-fixed": "#ffdbd2",
+                        "on-surface-variant": "#5a403f",
+                        "inverse-on-surface": "#ffede7",
+                        "primary-fixed": "#ffdad7",
+                        "inverse-primary": "#ffb3af",
+                        "on-tertiary-fixed-variant": "#78301d",
+                        "on-surface": "#281811",
+                        "on-background": "#281811",
+                        "tertiary-container": "#964732",
+                        "on-secondary-fixed-variant": "#930010",
+                        "surface-tint": "#b4262d",
+                        "surface-container-low": "#fff1ec",
+                        "on-error": "#ffffff",
+                        "on-secondary-fixed": "#410003",
+                        "inverse-surface": "#3e2c25",
+                        "surface-container-lowest": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "primary": "#910619",
+                        "on-tertiary-container": "#ffcdc1",
+                        "gold-accent": "#C89A3D"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "unit": "8px",
+                        "gutter": "24px",
+                        "margin-desktop": "40px",
+                        "margin-mobile": "16px",
+                        "section-gap": "80px",
+                        "container-max-width": "1280px"
+                    },
+                    "fontFamily": {
+                        "display-lg-mobile": ["Playfair Display"],
+                        "label-md": ["Inter"],
+                        "headline-lg-mobile": ["Playfair Display"],
+                        "body-lg": ["Inter"],
+                        "headline-sm": ["Playfair Display"],
+                        "display-lg": ["Playfair Display"],
+                        "headline-md": ["Playfair Display"],
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Playfair Display"]
+                    },
+                    "fontSize": {
+                        "display-lg-mobile": ["36px", { "lineHeight": "44px", "fontWeight": "700" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "500" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .jharokha-arch {
+            clip-path: path('M 0 100 L 0 0 Q 50 -20 100 0 L 100 100 Z');
+        }
+        .pattern-bg {
+            background-image: radial-gradient(circle at 2px 2px, rgba(145, 6, 25, 0.04) 1px, transparent 0);
+            background-size: 24px 24px;
+        }
+        .glass-panel {
+            background: rgba(255, 248, 246, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(142, 112, 110, 0.2);
+        }
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .jharokha-motif {
+            width: 40px;
+            height: 40px;
+            margin: 0 auto;
+            color: #C89A3D;
+            fill: currentColor;
+        }
+        .gold-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #C89A3D, transparent);
+        }
+        .nav-underline::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            background-color: #C89A3D;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+        .nav-underline:hover::after {
+            width: 100%;
+        }
+        .food-image-frame {
+            border: 1px solid #e2bebc;
+            position: relative;
+        }
+        .food-image-frame::after {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: -8px;
+            right: -8px;
+            bottom: -8px;
+            border: 1px solid #C89A3D;
+            pointer-events: none;
+            opacity: 0.5;
+            transition: all 0.3s ease;
+        }
+        .food-image-frame:hover::after {
+            top: -4px;
+            left: -4px;
+            right: -4px;
+            bottom: -4px;
+            opacity: 0.8;
+        }
+        /* Star selector styling */
+        .star-input {
+            cursor: pointer;
+            transition: color 0.15s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md overflow-x-hidden">
+
+<!-- TopNavBar -->
+<nav class="bg-surface/90 backdrop-blur-md fixed top-0 w-full z-50 border-b border-outline-variant shadow-sm transition-transform duration-300">
+    <div class="max-w-container-max-width mx-auto flex justify-between items-center px-margin-desktop py-unit">
+        <div class="flex items-center gap-4">
+            <a href="#" class="font-display-lg text-headline-sm md:text-headline-md text-primary tracking-widest uppercase">THE GULAB GANJ</a>
+        </div>
+        <div class="hidden md:flex space-x-8 items-center font-semibold">
+            <a class="text-primary nav-underline relative font-label-md text-label-md py-2" href="#">Home</a>
+            <a class="text-on-surface nav-underline relative font-label-md text-label-md py-2" href="#story">Our Story</a>
+            <a class="text-on-surface nav-underline relative font-label-md text-label-md py-2" href="#dining">Experiences</a>
+            <a class="text-on-surface nav-underline relative font-label-md text-label-md py-2" href="#menu">Menu</a>
+            <a class="text-on-surface nav-underline relative font-label-md text-label-md py-2" href="#reviews">Reviews</a>
+            <a class="text-on-surface nav-underline relative font-label-md text-label-md py-2" href="#locations">Locations</a>
+        </div>
+        <div class="hidden md:block">
+            <a href="#reservations" class="bg-primary-container text-on-primary font-label-md text-label-md px-6 py-3 rounded hover:bg-primary transition-colors border border-outline-variant scale-95 active:scale-100 shadow-sm inline-block">
+                Reserve a Table
+            </a>
+        </div>
+        <button id="mobile-menu-btn" class="md:hidden text-on-surface p-2">
+            <span class="material-symbols-outlined text-[28px]">menu</span>
+        </button>
+    </div>
+</nav>
+
+<!-- Mobile Navigation Drawer -->
+<div id="mobile-drawer" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm hidden transition-opacity duration-300">
+    <div class="fixed top-0 right-0 w-64 h-full bg-surface shadow-xl p-6 flex flex-col space-y-6">
+        <div class="flex justify-between items-center">
+            <span class="font-display-lg text-headline-sm text-primary">MENU</span>
+            <button id="close-drawer-btn" class="text-on-surface p-1">
+                <span class="material-symbols-outlined text-[28px]">close</span>
+            </button>
+        </div>
+        <div class="flex flex-col space-y-4">
+            <a class="text-on-surface hover:text-primary font-label-md py-2 border-b border-outline-variant/30" href="#">Home</a>
+            <a class="text-on-surface hover:text-primary font-label-md py-2 border-b border-outline-variant/30" href="#story">Our Story</a>
+            <a class="text-on-surface hover:text-primary font-label-md py-2 border-b border-outline-variant/30" href="#dining">Experiences</a>
+            <a class="text-on-surface hover:text-primary font-label-md py-2 border-b border-outline-variant/30" href="#menu">Menu</a>
+            <a class="text-on-surface hover:text-primary font-label-md py-2 border-b border-outline-variant/30" href="#reviews">Reviews</a>
+            <a class="text-on-surface hover:text-primary font-label-md py-2 border-b border-outline-variant/30" href="#locations">Locations</a>
+        </div>
+        <a href="#reservations" class="w-full text-center bg-primary-container text-on-primary font-label-md py-3 rounded hover:bg-primary transition-colors border border-outline-variant shadow-sm">
+            Reserve a Table
+        </a>
+    </div>
+</div>
+
+<main>
+    <!-- Hero Section -->
+    <header class="relative h-screen w-full flex items-center justify-center overflow-hidden">
+        <!-- Shader Background -->
+        <!-- STITCH_SHADER_START:ANIMATION_3 class="absolute inset-0 w-full h-full z-0" -->
+        <div class="absolute inset-0 w-full h-full z-0" style="display:block;">
+            <canvas id="shader-canvas-ANIMATION_3" style="display:block;width:100%;height:100%"></canvas>
+            <script>
+            (function() {
+              const canvas = document.getElementById('shader-canvas-ANIMATION_3');
+              function syncSize() {
+                const w = canvas.clientWidth  || 1280;
+                const h = canvas.clientHeight || 720;
+                if (canvas.width !== w || canvas.height !== h) {
+                  canvas.width  = w;
+                  canvas.height = h;
+                }
+              }
+              if (typeof ResizeObserver !== 'undefined') {
+                new ResizeObserver(syncSize).observe(canvas);
+              }
+              syncSize();
+
+              const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+              if (!gl) return;
+              const vs = `attribute vec2 a_position;
+varying vec2 v_texCoord;
+void main() {
+  v_texCoord = a_position * 0.5 + 0.5;
+  gl_Position = vec4(a_position, 0.0, 1.0);
+}`;
+              const fs = `precision highp float;
+uniform float u_time;
+uniform vec2 u_resolution;
+varying vec2 v_texCoord;
+
+vec3 permute(vec3 x) { return mod(((x*34.0)+1.0)*x, 289.0); }
+
+float snoise(vec2 v){
+  const vec4 C = vec4(0.211324865405187, 0.366025403784439,
+           -0.577350269189626, 0.024390243902439);
+  vec2 i  = floor(v + dot(v, C.yy) );
+  vec2 x0 = v -   i + dot(i, C.xx);
+  vec2 i1;
+  i1 = (x0.x > x0.y) ? vec2(1.0, 0.0) : vec2(0.0, 1.0);
+  vec4 x12 = x0.xyxy + C.xxzz;
+  x12.xy -= i1;
+  i = mod(i, 289.0);
+  vec3 p = permute( permute( i.y + vec3(0.0, i1.y, 1.0 ))
+  + i.x + vec3(0.0, i1.x, 1.0 ));
+  vec3 m = max(0.5 - vec3(dot(x0,x0), dot(x12.xy,x12.xy),
+    dot(x12.zw,x12.zw)), 0.0);
+  m = m*m ;
+  m = m*m ;
+  vec3 x = 2.0 * fract(p * C.www) - 1.0;
+  vec3 h = abs(x) - 0.5;
+  vec3 ox = floor(x + 0.5);
+  vec3 a0 = x - ox;
+  m *= 1.79284291400159 - 0.85373472095314 * ( a0*a0 + h*h );
+  vec3 g;
+  g.x  = a0.x  * x0.x  + h.x  * x0.y;
+  g.yz = a0.yz * x12.xz + h.yz * x12.yw;
+  return 130.0 * dot(m, g);
+}
+
+void main() {
+    vec2 uv = v_texCoord;
+    vec3 ivory = vec3(0.973, 0.961, 0.933); 
+    vec3 sand = vec3(0.910, 0.863, 0.784);  
+    vec3 gold = vec3(0.784, 0.604, 0.239);  
+    vec3 deepRed = vec3(0.702, 0.149, 0.176); 
+    
+    float n = snoise(uv * 3.0 + u_time * 0.1);
+    float n2 = snoise(uv * 5.0 - u_time * 0.05);
+    
+    vec3 color = mix(ivory, sand, 0.5 + 0.5 * sin(u_time * 0.2 + uv.x * 2.0));
+    color = mix(color, gold, clamp(n * 0.2, 0.0, 1.0));
+    color = mix(color, deepRed, clamp(n2 * 0.05, 0.0, 1.0));
+    
+    float vignette = 1.0 - length(uv - 0.5) * 1.2;
+    color *= clamp(vignette, 0.5, 1.0);
+    
+    gl_FragColor = vec4(color, 1.0);
+}`;
+              const cs = (type, src) => {
+                const s = gl.createShader(type);
+                gl.shaderSource(s, src);
+                gl.compileShader(s);
+                return s;
+              };
+              const prog = gl.createProgram();
+              gl.attachShader(prog, cs(gl.VERTEX_SHADER, vs));
+              gl.attachShader(prog, cs(gl.FRAGMENT_SHADER, fs));
+              gl.linkProgram(prog);
+              gl.useProgram(prog);
+              const buf = gl.createBuffer();
+              gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+              gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+              const pos = gl.getAttribLocation(prog, 'a_position');
+              gl.enableVertexAttribArray(pos);
+              gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
+              const uTime = gl.getUniformLocation(prog, 'u_time');
+              const uRes = gl.getUniformLocation(prog, 'u_resolution');
+              const uMouse = gl.getUniformLocation(prog, 'u_mouse');
+
+              let mouse = { x: canvas.width / 2, y: canvas.height / 2 };
+              window.addEventListener('mousemove', (event) => {
+                const rect = canvas.getBoundingClientRect();
+                if (rect.width && rect.height) {
+                  const nx = (event.clientX - rect.left) / rect.width;
+                  const ny = 1.0 - (event.clientY - rect.top) / rect.height;
+                  mouse.x = nx * canvas.width;
+                  mouse.y = ny * canvas.height;
+                }
+              });
+
+              function render(t) {
+                if (typeof ResizeObserver === 'undefined') syncSize();
+                gl.viewport(0, 0, canvas.width, canvas.height);
+                if (uTime) gl.uniform1f(uTime, t * 0.001);
+                if (uRes) gl.uniform2f(uRes, canvas.width, canvas.height);
+                if (uMouse) gl.uniform2f(uMouse, mouse.x, mouse.y);
+                gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+                requestAnimationFrame(render);
+              }
+              render(0);
+            })();
+            </script>
+        </div>
+        <!-- STITCH_SHADER_END:ANIMATION_3 -->
+        <!-- Overlay -->
+        <div class="absolute inset-0 bg-gradient-to-b from-primary/50 via-on-surface/40 to-on-surface/80 z-10"></div>
+        <div class="relative z-20 text-center px-margin-mobile md:px-xl max-w-4xl mx-auto reveal-on-scroll">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-outline-variant bg-surface/30 backdrop-blur-sm mb-6 shadow-sm">
+                <span class="material-symbols-outlined text-gold-accent text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+                <span class="font-label-md text-label-md text-on-surface">Rewari's #1 Pure Vegetarian Destination</span>
+            </div>
+            <h1 class="font-display-lg text-[40px] md:text-[76px] text-on-primary mb-6 tracking-tight leading-tight" style="text-shadow: 0 4px 16px rgba(40,24,17,0.4);">
+                Where Rewari Celebrates Food,<br/><span class="text-tertiary-fixed-dim italic font-headline-md font-playfair font-normal">Family &amp; Tradition</span>
+            </h1>
+            <p class="font-body-lg text-body-lg text-surface-container mb-10 max-w-2xl mx-auto font-light">
+                Experience authentic vegetarian Indian flavors, warm hospitality, and memorable gatherings in our city flagship haveli setting.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4 max-w-md mx-auto sm:max-w-none">
+                <a class="w-full sm:w-auto bg-primary-container text-on-primary font-label-md text-label-md px-8 py-4 rounded hover:bg-primary transition-colors border border-transparent shadow-lg text-center" href="#reservations">
+                    Reserve Table
+                </a>
+                <a class="w-full sm:w-auto bg-transparent border border-tertiary-fixed-dim text-tertiary-fixed-dim font-label-md text-label-md px-8 py-4 rounded hover:bg-tertiary-fixed-dim/10 transition-colors text-center" href="#menu">
+                    Explore Menu
+                </a>
+            </div>
+        </div>
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 animate-bounce">
+            <span class="material-symbols-outlined text-tertiary-fixed-dim" style="font-size: 32px;">keyboard_arrow_down</span>
+        </div>
+    </header>
+
+    <!-- Motif Divider -->
+    <div class="w-full flex justify-center py-lg bg-surface-container-low border-b border-outline-variant/30">
+        <svg class="jharokha-motif" viewBox="0 0 24 24">
+            <path d="M12 2L9 7H4L7 12L4 17H9L12 22L15 17H20L17 12L20 7H15L12 2Z"></path>
+        </svg>
+    </div>
+
+    <!-- Our Story Section -->
+    <section class="py-section-gap px-margin-mobile md:px-margin-desktop bg-surface-container-low relative" id="story">
+        <div class="pattern-bg absolute inset-0 opacity-40"></div>
+        <div class="max-w-container-max-width mx-auto grid grid-cols-1 md:grid-cols-2 gap-gutter items-center relative z-10">
+            <!-- Image Left -->
+            <div class="relative reveal-on-scroll">
+                <div class="aspect-[4/5] rounded overflow-hidden shadow-[0_20px_40px_rgba(42,26,19,0.15)] relative food-image-frame">
+                    <img class="w-full h-full object-cover" alt="Traditional family dining scene" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVpn0pOQP8i5uqrE6YzZkMuTY3hSJShZTnBl3KQiwp-dOtLTL0Jnqc3hprx77MWHbbINQiynntY7blp4XdsL6F6wf1m2bsJSGefo5aKiehP3WPnl8hI6Dmg-bbXx_nR9XrUI4sBDEJpNur8G8Jt-6TgW3EP8bHhrzeRfshhWA_KdtpiJ7qt2UbNop_H_W-A8O_08A0461gbNX9VukDOtxQ5O-n7igtsmf11oTk0i_ErYQeR6_Tz9u34qsaadw7i_y4GOqMU_PPA1U"/>
+                </div>
+            </div>
+            <!-- Text Right with Timeline -->
+            <div class="reveal-on-scroll space-y-6">
+                <div>
+                    <span class="font-label-md text-label-md text-primary tracking-widest uppercase">Our Heritage</span>
+                    <h2 class="font-display-lg text-headline-lg text-on-surface mt-2 mb-4">A Legacy of Atithi Devo Bhava</h2>
+                    <p class="font-body-md text-body-md text-on-surface-variant">
+                        Located in the heart of Rewari, near the railway station on Circular Road, The Gulab Ganj is a celebration of vegetarian culinary traditions. Our flagship haveli has been a beloved landmark of hospitality, offering families a taste of royal Indian flavors in a regal setting.
+                    </p>
+                </div>
+                <!-- Timeline items -->
+                <div class="relative border-l border-outline/30 pl-6 ml-2 space-y-8">
+                    <!-- Timeline Item 1 -->
+                    <div class="relative">
+                        <div class="absolute -left-[30px] top-1.5 w-4 h-4 rounded-full bg-gold-accent border-2 border-surface shadow-sm"></div>
+                        <h3 class="font-headline-sm text-headline-sm text-on-surface">The Beginning</h3>
+                        <p class="font-body-md text-sm text-on-surface-variant mt-1">
+                            Born from a passion for authentic flavors and a desire to bring families together, The Gulab Ganj started as a premium dining experience dedicated to traditional culinary arts.
+                        </p>
+                    </div>
+                    <!-- Timeline Item 2 -->
+                    <div class="relative">
+                        <div class="absolute -left-[30px] top-1.5 w-4 h-4 rounded-full bg-primary border-2 border-surface shadow-sm"></div>
+                        <h3 class="font-headline-sm text-headline-sm text-on-surface">Community First</h3>
+                        <p class="font-body-md text-sm text-on-surface-variant mt-1">
+                            A meal is a conduit for connection. Our spaces are designed to host life's most precious family moments, from traditional thali lunches to grand festive celebrations.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Curated Experiences Section -->
+    <section class="py-section-gap px-margin-mobile md:px-margin-desktop bg-surface relative" id="dining">
+        <div class="max-w-container-max-width mx-auto">
+            <div class="text-center mb-12 reveal-on-scroll">
+                <span class="material-symbols-outlined text-primary mb-2" style="font-size: 36px;">restaurant</span>
+                <h2 class="font-display-lg text-headline-lg text-on-surface">Curated Experiences</h2>
+                <div class="gold-divider w-24 mx-auto mt-3 mb-4"></div>
+                <p class="font-body-md text-body-md text-on-surface-variant max-w-2xl mx-auto">Spaces designed for every occasion, ensuring comfort, elegance, and unforgettable memories.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+                <!-- Card 1 -->
+                <div class="group relative aspect-[16/9] overflow-hidden rounded border border-outline-variant shadow-sm reveal-on-scroll">
+                    <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDBdP3RyynbJ0qKL8W00Dpku0jh1BxOsZsNnIn9TaY2Lm5MKg_D5wKOAzfEqB8TC1Wfirb5NlJg4V2Yt6co1bor_MapP5KPuaEKZMkhOXXvP0ba07Xdhaa3HwvznH_7pvoDY8Yf_RaD9NABYn6J2nCO3nnyLkI7eMTHG4mxi9xLpI8F0aDBCCVomV5pykOB8QIDTEV4YyRxK8a1FPDHXVIFDsA92o3eNqliF6qx1EpF04TOGNR0faS7-PcDoVPlZhuh51yg6hzM5t8')"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-on-surface/90 via-on-surface/40 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-6 w-full">
+                        <h3 class="font-headline-md text-headline-md text-on-primary mb-1">Family Dining</h3>
+                        <p class="font-body-md text-sm text-surface-container-low mb-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">Spacious and comfortable settings perfect for creating memories with loved ones.</p>
+                        <a class="inline-flex items-center font-label-md text-xs text-gold-accent uppercase tracking-wider hover:text-white transition-colors" href="#reservations">
+                            Explore <span class="material-symbols-outlined ml-1 text-xs">arrow_forward</span>
+                        </a>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="group relative aspect-[16/9] overflow-hidden rounded border border-outline-variant shadow-sm reveal-on-scroll">
+                    <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB8FsecRjhtHnSuTymF-GHlyxmcU5L9bfRYMw6Vjs7U-Pl7f1H6f5a0UlgjU6pgBOSt3YiyQKtLmjlFHcxAzDMUBUbGYdM2ETnHa7vx_7t6iKndu32UPRW-ji_-dLT84YrkbJqiCMu8qAOan5VDtiEASHrTcAw5xOHapF7FIzIRF9NnvzjjFEWy-RO05qH_6icYe5-KJfWUmkCz0BJXj9nZPVT-MShi8bakOpIu3JebDJ5CxMwqrPUt-tcVTOHBSTYQfVk0Iqu6RJ0')"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-on-surface/90 via-on-surface/40 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-6 w-full">
+                        <h3 class="font-headline-md text-headline-md text-on-primary mb-1">Grand Gatherings</h3>
+                        <p class="font-body-md text-sm text-surface-container-low mb-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">Timeless elegance and royal hospitality for celebrations, parties, and family events.</p>
+                        <a class="inline-flex items-center font-label-md text-xs text-gold-accent uppercase tracking-wider hover:text-white transition-colors" href="#reservations">
+                            Explore <span class="material-symbols-outlined ml-1 text-xs">arrow_forward</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Signature Bento Grid -->
+    <section class="py-section-gap px-margin-mobile md:px-margin-desktop bg-surface-container-low relative">
+        <div class="max-w-container-max-width mx-auto">
+            <div class="text-center mb-12 reveal-on-scroll">
+                <span class="font-label-md text-label-md text-primary tracking-widest uppercase">Menu Showcase</span>
+                <h2 class="font-display-lg text-headline-lg text-on-surface mt-2 mb-4">Signature Offerings</h2>
+                <div class="gold-divider w-24 mx-auto mb-4"></div>
+                <p class="font-body-md text-body-md text-on-surface-variant max-w-2xl mx-auto">A curated selection of our finest dishes, blending authentic recipes with modern presentation.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[300px]">
+                <!-- Large Feature Card -->
+                <div class="md:col-span-2 md:row-span-2 relative group overflow-hidden rounded border border-outline-variant shadow-sm hover:shadow-md transition-all reveal-on-scroll cursor-pointer">
+                    <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Signature Paneer Makhani" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_DoPiLSeag4Do3eCtj_-rkvbV94KuU9GiRtZ3edTlMCwSYJzrTjX7vc-IQuzPgJTasTsuRwx7XmjBt82iSQmTWDvKYCIum_NykP1DzdM7IIlYLIbgZib2UD4tfWHo5IVZmuV9la2UdKCldLIykuNiXi9ATXZ4rakh_AmpUWFgK3imZm9H6uSzLoKpcyDwxWqfcM-d82dq_uFLZf6eFlNeo4desnpW2_6ORWw8aEtT-2IHW8yCZYAu3uMcrTN6WaVoppkD91XruZ8"/>
+                    <div class="absolute inset-0 bg-gradient-to-t from-inverse-surface/90 via-inverse-surface/40 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-8 w-full">
+                        <span class="inline-block px-3 py-1 bg-surface/20 backdrop-blur-md rounded-full font-label-md text-label-md text-on-secondary mb-3 border border-outline-variant/50">North Indian</span>
+                        <h3 class="font-display-lg text-display-lg-mobile md:text-headline-lg text-on-secondary mb-2">Paneer Makhani</h3>
+                        <p class="font-body-md text-body-md text-surface-container max-w-md opacity-90">Our royal cottage cheese preparation in a rich, creamy tomato and cashew gravy, infused with aromatic spices.</p>
+                    </div>
+                </div>
+                <!-- Small Card 1 -->
+                <div class="relative group overflow-hidden rounded border border-outline-variant shadow-sm hover:shadow-md transition-all reveal-on-scroll cursor-pointer font-label-md text-label-md">
+                    <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Tandoori Soya Chaap" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMNRWw_fhuNa7NDPXqRKONtqmNcCjZg2NBkBAXurviVmfQTbpY3EmrvLwc9kZLkUzDHBUEnaA82OOAtckkGE6TO8d9FpD-sYR4Vvme9w8X1q2g3V7lgr-e7cYiIo92MOd3sWFYYLX3sqYt3n7VuROCG5LpelbAb3LtMM9bKttlrKEZO0khUsJamQw5TB2lFEqTPQLPCgN_RnTRELqQe8dtl9lvYxrzDrqH8hBw7kycYP1vQW0dYujQ2hbajoqPzZatg6zX_6FaJtQ"/>
+                    <div class="absolute inset-0 bg-gradient-to-t from-inverse-surface/90 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-6 w-full">
+                        <h3 class="font-headline-md text-headline-md text-on-secondary mb-1">Tandoori Chaap</h3>
+                        <p class="font-body-md text-body-md text-surface-container text-sm opacity-90">Smoky, spiced perfection.</p>
+                    </div>
+                </div>
+                <!-- Small Card 2 -->
+                <div class="relative group overflow-hidden rounded border border-outline-variant shadow-sm hover:shadow-md transition-all reveal-on-scroll cursor-pointer font-label-md text-label-md">
+                    <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Gulab Lassi" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0nX0DyNId2ZDXHZsCKj77h__lJU4kfRwa04Mmn-bDT1r2olNixHbOCd8LX_Ev0yGC1Zn7yvFuQK6UCTqukRhgCeXPTOW56BB5EHUCb_6WIVYE0cHgO1pfgtFvz4rSqhqcMfgXwuCQvVIVVQL2lOiDnwziyFqmFGVBMfsgt_uhv9Y4kmU-vMcSMIQg7OvWAgE55iY4iJrJA8sdS-UMpyUhfKgA59SEgUetmV5h8OKLkflxP4rRxvE396FlqulxcmB3oj_q5QeeobE"/>
+                    <div class="absolute inset-0 bg-gradient-to-t from-inverse-surface/90 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-6 w-full">
+                        <h3 class="font-headline-md text-headline-md text-on-secondary mb-1">Gulab Lassi</h3>
+                        <p class="font-body-md text-body-md text-surface-container text-sm opacity-90">Signature refreshing blend.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detailed Menu Section (Dynamic) -->
+    <section class="py-section-gap px-margin-mobile md:px-margin-desktop bg-surface relative" id="menu">
+        <div class="max-w-container-max-width mx-auto">
+            <div class="text-center mb-12 reveal-on-scroll">
+                <span class="font-label-md text-label-md text-primary tracking-widest uppercase">The Royal Feast</span>
+                <h2 class="font-display-lg text-headline-lg text-on-surface mt-2 mb-4">Detailed Menu Board</h2>
+                <div class="gold-divider w-24 mx-auto mb-4"></div>
+                <p class="font-body-md text-body-md text-on-surface-variant max-w-2xl mx-auto">Our dishes are crafted using 100% vegetarian ingredients, slow-cooked to perfection in the royal tradition.</p>
+            </div>
+
+            <!-- Category Filter Tabs -->
+            <div id="category-tabs-container" class="flex justify-center flex-wrap gap-4 mb-12 reveal-on-scroll font-semibold">
+                <!-- Category tabs rendered dynamically -->
+            </div>
+
+            <!-- Dynamic Tab Contents -->
+            <div id="dynamic-menu-content-container" class="space-y-12 transition-opacity duration-300">
+                <!-- Rendered dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience / Ambiance Section -->
+    <section class="py-section-gap overflow-hidden relative bg-inverse-surface bg-[#2a1a13]">
+        <div class="pattern-bg absolute inset-0 opacity-10 pointer-events-none"></div>
+        <div class="max-w-container-max-width mx-auto px-margin-mobile md:px-margin-desktop relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <!-- Gallery Images (Left) -->
+                <div class="space-y-4 pt-4 reveal-on-scroll">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="space-y-4 pt-12">
+                            <img class="w-full h-64 object-cover rounded border border-outline-variant/30" alt="Private Alcove Dining" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBdP3RyynbJ0qKL8W00Dpku0jh1BxOsZsNnIn9TaY2Lm5MKg_D5wKOAzfEqB8TC1Wfirb5NlJg4V2Yt6co1bor_MapP5KPuaEKZMkhOXXvP0ba07Xdhaa3HwvznH_7pvoDY8Yf_RaD9NABYn6J2nCO3nnyLkI7eMTHG4mxi9xLpI8F0aDBCCVomV5pykOB8QIDTEV4YyRxK8a1FPDHXVIFDsA92o3eNqliF6qx1EpF04TOGNR0faS7-PcDoVPlZhuh51yg6hzM5t8"/>
+                            <img class="w-full h-48 object-cover rounded border border-outline-variant/30" alt="Warm Hanging Lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5aPpNgdpluDkSENNLpFxS0CemQRVH_Bqu7y-znxnLbfe8lXGBYs0CO8ig7Q5a1eJ9GVOgnoKVHCiHeZfUEEwEyejHNSduSWipQPSxlqERiy1c8t6KRHjqU0xTMjH9aMUqVUZ6d3L-0E_s_QNfQZBpv-yd522-CR2DJ58RCYhXUSt-7rvAtQaSKDhG0gsbjI-DMKGQ7BZpdxbFazy4Un6uKaB0oyvWpnfXNBXWv1oQf-v9iGmrJMMxua_wx_9J9p1hjb56bfrJqDY"/>
+                        </div>
+                        <div class="space-y-4">
+                            <img class="w-full h-80 object-cover rounded border border-outline-variant/30" alt="Jharokha Architectural Wall Decor" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8FsecRjhtHnSuTymF-GHlyxmcU5L9bfRYMw6Vjs7U-Pl7f1H6f5a0UlgjU6pgBOSt3YiyQKtLmjlFHcxAzDMUBUbGYdM2ETnHa7vx_7t6iKndu32UPRW-ji_-dLT84YrkbJqiCMu8qAOan5VDtiEASHrTcAw5xOHapF7FIzIRF9NnvzjjFEWy-RO05qH_6icYe5-KJfWUmkCz0BJXj9nZPVT-MShi8bakOpIu3JebDJ5CxMwqrPUt-tcVTOHBSTYQfVk0Iqu6RJ0"/>
+                        </div>
+                    </div>
+                </div>
+                <!-- Content (Right) -->
+                <div class="space-y-6 reveal-on-scroll">
+                    <span class="font-label-md text-label-md text-tertiary-fixed-dim tracking-widest uppercase">The Atmosphere</span>
+                    <h2 class="font-display-lg text-headline-lg text-on-primary">An Ambiance of Royal Comfort</h2>
+                    <p class="font-body-md text-body-md text-surface-container-high opacity-90">
+                        Step into a space designed to transport you. From the warm glow of vintage lighting to the intricate Jharokha motifs adorning our walls, every detail is meticulously curated to provide a serene and regal dining atmosphere perfect for family gatherings.
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4">
+                        <div class="flex items-start gap-3">
+                            <span class="material-symbols-outlined text-tertiary-fixed-dim" style="font-variation-settings: 'FILL' 1;">groups</span>
+                            <div>
+                                <h4 class="font-headline-sm text-headline-sm text-on-primary">Family Friendly</h4>
+                                <p class="font-body-md text-xs text-surface-container opacity-70">Spacious seating ideal for celebrations.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="material-symbols-outlined text-tertiary-fixed-dim" style="font-variation-settings: 'FILL' 1;">ac_unit</span>
+                            <div>
+                                <h4 class="font-headline-sm text-headline-sm text-on-primary">Comfortable</h4>
+                                <p class="font-body-md text-xs text-surface-container opacity-70">Fully air-conditioned premium setting.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="material-symbols-outlined text-tertiary-fixed-dim" style="font-variation-settings: 'FILL' 1;">local_dining</span>
+                            <div>
+                                <h4 class="font-headline-sm text-headline-sm text-on-primary">Impeccable Service</h4>
+                                <p class="font-body-md text-xs text-surface-container opacity-70">Traditional hospitality at its finest.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="material-symbols-outlined text-tertiary-fixed-dim" style="font-variation-settings: 'FILL' 1;">eco</span>
+                            <div>
+                                <h4 class="font-headline-sm text-headline-sm text-on-primary">100% Pure Veg</h4>
+                                <p class="font-body-md text-xs text-surface-container opacity-70">Strictly vegetarian kitchen.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Reviews Section (Dynamic) -->
+    <section class="py-section-gap px-margin-mobile md:px-margin-desktop bg-surface-container-low relative" id="reviews">
+        <div class="pattern-bg absolute inset-0 opacity-40"></div>
+        <div class="max-w-container-max-width mx-auto relative z-10">
+            <div class="text-center mb-12 reveal-on-scroll">
+                <span class="font-label-md text-label-md text-primary tracking-widest uppercase font-semibold">Guest Book</span>
+                <h2 class="font-display-lg text-headline-lg text-on-surface mt-2 mb-4">Customer Reviews</h2>
+                <div class="gold-divider w-24 mx-auto mb-4"></div>
+                <div class="flex items-center justify-center gap-2 mb-4">
+                    <div class="flex text-amber-500">
+                        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                    </div>
+                    <span class="font-bold text-on-surface text-base">4.7 / 5</span>
+                    <span class="text-xs text-on-surface-variant/80">(Based on reviews)</span>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Write a Review Form -->
+                <div class="lg:col-span-1 glass-panel p-6 rounded border border-outline-variant shadow-sm h-fit reveal-on-scroll">
+                    <h3 class="font-display text-lg text-primary mb-4 text-center">Submit a Review</h3>
+                    <form id="submit-review-form" class="space-y-6">
+                        <div>
+                            <label class="block text-xs font-bold text-primary uppercase tracking-widest mb-1">Your Name</label>
+                            <input required type="text" id="review-name" class="w-full heritage-input py-2 px-0" placeholder="e.g. Preeti Yadav"/>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-primary uppercase tracking-widest mb-2">Rating</label>
+                            <div class="flex gap-1 text-amber-500 text-[24px]">
+                                <span onclick="setReviewRating(1)" onmouseover="highlightStars(1)" onmouseout="resetStars()" class="material-symbols-outlined star-input">star</span>
+                                <span onclick="setReviewRating(2)" onmouseover="highlightStars(2)" onmouseout="resetStars()" class="material-symbols-outlined star-input">star</span>
+                                <span onclick="setReviewRating(3)" onmouseover="highlightStars(3)" onmouseout="resetStars()" class="material-symbols-outlined star-input">star</span>
+                                <span onclick="setReviewRating(4)" onmouseover="highlightStars(4)" onmouseout="resetStars()" class="material-symbols-outlined star-input">star</span>
+                                <span onclick="setReviewRating(5)" onmouseover="highlightStars(5)" onmouseout="resetStars()" class="material-symbols-outlined star-input">star</span>
+                            </div>
+                            <input type="hidden" id="review-rating" value="5"/>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-primary uppercase tracking-widest mb-1">Comments</label>
+                            <textarea required id="review-comment" rows="3" class="w-full bg-transparent border border-outline-variant focus:border-primary focus:ring-0 text-on-surface p-3 mt-1 rounded text-sm transition-colors" placeholder="Tell us about your experience..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-primary text-on-primary font-bold py-3 rounded hover:bg-primary-container transition-colors uppercase tracking-widest text-xs shadow">
+                            Post Review
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Reviews Display Board -->
+                <div class="lg:col-span-2 space-y-6 h-[500px] overflow-y-auto pr-2 reveal-on-scroll" id="customer-reviews-container">
+                    <!-- Reviews rendered dynamically -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Locations Section -->
+    <section class="py-section-gap px-margin-mobile md:px-margin-desktop bg-surface relative" id="locations">
+        <div class="max-w-container-max-width mx-auto">
+            <div class="text-center mb-12 reveal-on-scroll">
+                <span class="font-label-md text-label-md text-primary tracking-widest uppercase">Visit Us</span>
+                <h2 class="font-display-lg text-headline-lg text-on-surface mt-2 mb-4">Our City Flagship</h2>
+                <div class="gold-divider w-24 mx-auto mb-4"></div>
+                <p class="font-body-md text-body-md text-on-surface-variant max-w-2xl mx-auto">Experience fine dining and warm hospitality in the heart of Rewari.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 items-stretch reveal-on-scroll">
+                <!-- Location Info -->
+                <div class="lg:col-span-2 bg-surface-container-low border border-outline-variant p-8 rounded shadow-sm flex flex-col justify-between">
+                    <div>
+                        <span class="inline-block px-3 py-1 bg-primary-container text-on-primary text-xs font-label-md rounded-full mb-4">Flagship Haveli</span>
+                        <h3 class="font-display-lg text-headline-sm text-on-surface mb-2">Circular Road Branch</h3>
+                        <p class="font-body-md text-sm text-on-surface-variant leading-relaxed">
+                            Our grand city flagship restaurant stands as a symbol of classical hospitality. Situated near the railway station opposite the SBI main branch, it is the perfect spot for family meals, royal lunches, and celebratory dinners.
+                        </p>
+                    </div>
+                    
+                    <div class="space-y-4 border-t border-outline-variant/30 pt-6 mt-6">
+                        <div class="flex items-start gap-3 text-on-surface-variant">
+                            <span class="material-symbols-outlined text-[20px] text-primary">location_on</span>
+                            <span class="font-body-md text-sm gg-dynamic-address">Circular Road, Near Railway Station (Opposite SBI Main Branch), Rewari, Haryana 123401</span>
+                        </div>
+                        <div class="flex items-center gap-3 text-on-surface-variant">
+                            <span class="material-symbols-outlined text-[20px] text-primary">schedule</span>
+                            <span class="font-body-md text-sm gg-dynamic-hours">Daily: 11:00 AM - 11:00 PM</span>
+                        </div>
+                        <div class="flex items-center gap-3 text-on-surface-variant">
+                            <span class="material-symbols-outlined text-[20px] text-primary">call</span>
+                            <span class="font-body-md text-sm"><a href="#" class="gg-dynamic-phone-link hover:underline gg-dynamic-phone">+91 98765 43210</a></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Google Maps Frame -->
+                <div class="lg:col-span-3 h-[380px] lg:h-auto rounded border border-outline-variant/30 overflow-hidden shadow-sm">
+                    <iframe src="https://maps.google.com/maps?q=Gulab%20Ganj%20Restaurant,%20Circular%20Road,%20Rewari&t=&z=15&ie=UTF8&iwloc=&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reservations Section -->
+    <section class="py-section-gap px-margin-mobile md:px-margin-desktop bg-surface-container-low relative" id="reservations">
+        <div class="pattern-bg absolute inset-0 opacity-40"></div>
+        <div class="max-w-xl mx-auto glass-panel p-8 md:p-12 rounded shadow-md relative z-10 reveal-on-scroll">
+            <div class="text-center mb-8">
+                <span class="material-symbols-outlined text-primary text-[32px] mb-2">event_seat</span>
+                <h2 class="font-display-lg text-headline-sm md:text-headline-md text-on-surface">Book a Table</h2>
+                <div class="gold-divider w-16 mx-auto mt-2 mb-3"></div>
+                <p class="font-body-md text-sm text-on-surface-variant">Secure your royal dining experience. We welcome families and small parties.</p>
+            </div>
+            
+            <form onsubmit="event.preventDefault(); alert('Reservation Request Submitted! We will contact you shortly to confirm your booking.'); this.reset();" class="space-y-6">
+                <!-- Underline styled inputs as per DESIGN.md -->
+                <div class="relative">
+                    <label class="block text-xs font-semibold text-primary uppercase tracking-widest mb-1">Full Name</label>
+                    <input required type="text" class="w-full bg-transparent border-0 border-b border-on-surface/40 focus:border-primary focus:ring-0 text-on-surface font-body-md py-2 px-0 transition-colors" placeholder="e.g. Rajesh Sharma"/>
+                </div>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div class="relative">
+                        <label class="block text-xs font-semibold text-primary uppercase tracking-widest mb-1">Phone Number</label>
+                        <input required type="tel" class="w-full bg-transparent border-0 border-b border-on-surface/40 focus:border-primary focus:ring-0 text-on-surface font-body-md py-2 px-0 transition-colors" placeholder="e.g. +91 98765 43210"/>
+                    </div>
+                    <div class="relative">
+                        <label class="block text-xs font-semibold text-primary uppercase tracking-widest mb-1">Number of Guests</label>
+                        <select class="w-full bg-transparent border-0 border-b border-on-surface/40 focus:border-primary focus:ring-0 text-on-surface font-body-md py-2 px-0 transition-colors">
+                            <option value="2">2 Guests</option>
+                            <option value="4">4 Guests</option>
+                            <option value="6">6 Guests</option>
+                            <option value="8">8 Guests</option>
+                            <option value="10">10+ Guests</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div class="relative">
+                        <label class="block text-xs font-semibold text-primary uppercase tracking-widest mb-1">Date</label>
+                        <input required type="date" class="w-full bg-transparent border-0 border-b border-on-surface/40 focus:border-primary focus:ring-0 text-on-surface font-body-md py-2 px-0 transition-colors"/>
+                    </div>
+                    <div class="relative">
+                        <label class="block text-xs font-semibold text-primary uppercase tracking-widest mb-1">Time</label>
+                        <select class="w-full bg-transparent border-0 border-b border-on-surface/40 focus:border-primary focus:ring-0 text-on-surface font-body-md py-2 px-0 transition-colors">
+                            <option value="12:00 PM">Lunch (12:00 PM)</option>
+                            <option value="1:30 PM">Lunch (01:30 PM)</option>
+                            <option value="3:00 PM">Lunch (03:00 PM)</option>
+                            <option value="7:00 PM">Dinner (07:00 PM)</option>
+                            <option value="8:30 PM">Dinner (08:30 PM)</option>
+                            <option value="10:00 PM">Dinner (10:00 PM)</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <button type="submit" class="w-full bg-primary text-on-primary font-bold py-4 rounded hover:bg-primary-container hover:text-on-primary-container transition-all border border-transparent shadow-md uppercase tracking-widest">
+                    Request Booking
+                </button>
+            </form>
+        </div>
+    </section>
+</main>
+
+<!-- Footer -->
+<footer class="bg-inverse-surface text-on-tertiary-fixed font-body-md text-body-md border-t-4 border-secondary-container shadow-[0_-10px_40px_rgba(42,26,19,0.1)] w-full py-section-gap px-margin-desktop flex flex-col items-center text-center relative overflow-hidden bg-[#2a1a13]">
+    <div class="pattern-bg absolute inset-0 opacity-10 pointer-events-none"></div>
+    <div class="relative z-10 w-full max-w-container-max-width">
+        <div class="mb-8">
+            <span class="font-display-lg text-headline-md text-tertiary-fixed mb-2 block tracking-widest uppercase">THE GULAB GANJ</span>
+            <p class="text-surface-container opacity-80 max-w-md mx-auto">Experience Rewari's Premium Pure Vegetarian Dining Destination.</p>
+        </div>
+        <div class="flex flex-wrap justify-center gap-6 mb-12 font-semibold">
+            <a class="text-on-tertiary-fixed-variant opacity-80 hover:text-primary-fixed-dim hover:underline transition-all font-label-md" href="#">Privacy Policy</a>
+            <a class="text-on-tertiary-fixed-variant opacity-80 hover:text-primary-fixed-dim hover:underline transition-all font-label-md" href="#">Terms of Service</a>
+            <a class="text-on-tertiary-fixed-variant opacity-80 hover:text-primary-fixed-dim hover:underline transition-all font-label-md" href="#">Careers</a>
+            <a class="text-on-tertiary-fixed-variant opacity-80 hover:text-primary-fixed-dim hover:underline transition-all font-label-md" href="#locations">Contact Us</a>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-left max-w-2xl mx-auto mb-10 pb-8 border-b border-outline-variant/30 text-surface-container">
+            <div>
+                <h4 class="font-label-md text-gold-accent font-bold uppercase tracking-widest mb-2">Visit Us</h4>
+                <p class="text-sm opacity-80 gg-dynamic-address">Circular Road, Near Railway Station (Opposite SBI Main Branch), Rewari, Haryana 123401</p>
+            </div>
+            <div>
+                <h4 class="font-label-md text-gold-accent font-bold uppercase tracking-widest mb-2">Contact Details</h4>
+                <p class="text-sm opacity-80">Phone: <a href="#" class="gg-dynamic-phone-link gg-dynamic-phone hover:underline">+91 98765 43210</a></p>
+                <p class="text-sm opacity-80">Email: <a href="#" class="gg-dynamic-email-link gg-dynamic-email hover:underline">info@gulabganjrewari.com</a></p>
+            </div>
+        </div>
+        <div class="w-24 h-px bg-outline-variant/30 mx-auto mb-8"></div>
+        <p class="text-sm opacity-60">© 2024 THE GULAB GANJ. All Rights Reserved. Heritage Royale Hospitality. Atithi Devo Bhava.</p>
+    </div>
+</footer>
+
+<!-- Load Central Database Store -->
+<script src="js/data-store.js"></script>
+
+<script>
+    // Reveal elements on scroll
+    document.addEventListener('DOMContentLoaded', () => {
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal-on-scroll').forEach((el) => {
+            observer.observe(el);
+        });
+
+        // Initialize Dynamic Contents
+        renderDynamicMenu();
+        renderDynamicReviews();
+        resetStars();
+    });
+
+    // Mobile drawer navigation logic
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileDrawer = document.getElementById('mobile-drawer');
+    const closeDrawerBtn = document.getElementById('close-drawer-btn');
+
+    mobileMenuBtn.addEventListener('click', () => {
+        mobileDrawer.classList.remove('hidden');
+    });
+
+    closeDrawerBtn.addEventListener('click', () => {
+        mobileDrawer.classList.add('hidden');
+    });
+
+    mobileDrawer.addEventListener('click', (e) => {
+        if (e.target === mobileDrawer) {
+            mobileDrawer.classList.add('hidden');
+        }
+    });
+
+    // Detailed Menu categories switch tab logic
+    function switchTab(tabName) {
+        window.currentActiveTab = tabName;
+        renderDynamicMenu();
+    }
+
+    // Dynamic Menu Rendering
+    function renderDynamicMenu() {
+        const items = GulabGanjStore.getMenuItems();
+        const categories = GulabGanjStore.getCategories();
+        
+        // Find active tab or fallback to first category
+        let activeTab = window.currentActiveTab;
+        if (!activeTab || !categories.find(c => c.id === activeTab)) {
+            activeTab = categories[0] ? categories[0].id : '';
+            window.currentActiveTab = activeTab;
+        }
+
+        // Render tab buttons
+        const tabsContainer = document.getElementById('category-tabs-container');
+        if (tabsContainer) {
+            tabsContainer.innerHTML = '';
+            categories.forEach(cat => {
+                const isActive = cat.id === activeTab;
+                const btnHTML = `
+                    <button onclick="switchTab('${cat.id}')" id="tab-btn-${cat.id}" class="menu-tab-btn px-6 py-3 font-label-md text-label-md rounded border-b-2 ${isActive ? 'border-primary text-primary' : 'border-transparent text-on-surface hover:text-primary'} transition-all">
+                        ${cat.name}
+                    </button>
+                `;
+                tabsContainer.innerHTML += btnHTML;
+            });
+        }
+
+        // Render contents
+        const contentContainer = document.getElementById('dynamic-menu-content-container');
+        if (!contentContainer) return;
+        contentContainer.innerHTML = '';
+
+        if (!activeTab) {
+            contentContainer.innerHTML = `<p class="text-sm italic text-on-surface-variant/70 text-center py-4">No categories defined.</p>`;
+            return;
+        }
+
+        const list = items.filter(item => item.category === activeTab);
+        if (list.length === 0) {
+            contentContainer.innerHTML = `<p class="text-sm italic text-on-surface-variant/70 text-center py-4">No items available in this category.</p>`;
+            return;
+        }
+
+        // Find featured item (Signature, Chef's Special or just first item)
+        let featuredItem = list.find(item => item.tag && (item.tag.toLowerCase().includes('special') || item.tag.toLowerCase().includes('signature') || item.tag.toLowerCase().includes('oven')));
+        if (!featuredItem) {
+            featuredItem = list[0];
+        }
+
+        // Render Featured
+        const featuredHTML = `
+            <div class="flex flex-col md:flex-row gap-8 items-center bg-surface-container-low rounded border border-outline-variant shadow-sm overflow-hidden group">
+                <div class="w-full md:w-1/2 h-64 md:h-[350px] overflow-hidden relative bg-surface">
+                    ${featuredItem.image ? 
+                        `<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="${featuredItem.name}" src="${featuredItem.image}"/>` : 
+                        `<div class="w-full h-full bg-outline-variant/10 flex items-center justify-center"><span class="material-symbols-outlined text-[80px] text-outline-variant">flatware</span></div>`
+                    }
+                    ${featuredItem.tag ? `<div class="absolute top-4 left-4 bg-primary-container text-white px-3 py-1 text-label-sm font-label-sm rounded uppercase tracking-wider">${featuredItem.tag}</div>` : ''}
+                </div>
+                <div class="w-full md:w-1/2 p-6 md:p-10 space-y-4">
+                    <h3 class="font-display text-headline-sm md:text-headline-md text-on-surface">${featuredItem.name}</h3>
+                    <p class="font-body-md text-body-md text-on-surface-variant">${featuredItem.description}</p>
+                    ${featuredItem.elements ? `
+                        <div class="space-y-1">
+                            <h4 class="font-label-sm text-xs text-primary uppercase tracking-wider">Key Ingredients / Info</h4>
+                            <p class="font-body-sm text-sm text-on-surface-variant italic">${featuredItem.elements}</p>
+                        </div>
+                    ` : ''}
+                    <div class="pt-4 border-t border-outline-variant/30 flex justify-between items-center">
+                        <span class="font-headline-md text-headline-sm font-semibold text-primary">₹${featuredItem.price}</span>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        // Render Regular items
+        const regularList = list.filter(item => item.id !== featuredItem.id);
+        let regularHTML = '';
+        if (regularList.length > 0) {
+            regularHTML = `<div class="grid grid-cols-1 md:grid-cols-2 gap-x-gutter gap-y-6 mt-8">`;
+            regularList.forEach(item => {
+                regularHTML += `
+                    <div class="flex justify-between items-start border-b border-outline-variant/50 pb-4 group">
+                        <div class="space-y-1 pr-4">
+                            <h4 class="font-body-lg text-body-md font-medium text-on-surface group-hover:text-primary transition-colors">${item.name}</h4>
+                            <p class="font-body-sm text-sm text-on-surface-variant">${item.description}</p>
+                            ${item.tag ? `<span class="bg-primary/5 text-primary text-[10px] px-2 py-0.5 rounded uppercase font-bold border border-primary/20">${item.tag}</span>` : ''}
+                        </div>
+                        <span class="font-body-lg text-body-md font-semibold text-primary">₹${item.price}</span>
+                    </div>
+                `;
+            });
+            regularHTML += `</div>`;
+        }
+
+        contentContainer.innerHTML = featuredHTML + regularHTML;
+    }
+
+    // Dynamic Reviews Rendering
+    function renderDynamicReviews() {
+        const container = document.getElementById('customer-reviews-container');
+        container.innerHTML = '';
+
+        const reviews = GulabGanjStore.getReviews();
+        if (reviews.length === 0) {
+            container.innerHTML = `<div class="text-sm italic text-on-surface-variant/70 text-center py-4">No guest book reviews yet. Be the first to share your thoughts!</div>`;
+            return;
+        }
+
+        reviews.forEach(review => {
+            let starsHTML = '';
+            for (let i = 1; i <= 5; i++) {
+                starsHTML += `<span class="material-symbols-outlined text-[16px] text-amber-500" style="font-variation-settings: 'FILL' ${i <= review.rating ? 1 : 0};">star</span>`;
+            }
+
+            const card = document.createElement('div');
+            card.className = 'border border-outline-variant/20 rounded p-6 bg-surface-container-low/40 space-y-4';
+            card.innerHTML = `
+                <div class="flex justify-between items-start">
+                    <div>
+                        <span class="font-bold text-on-surface text-base block">${review.name}</span>
+                        <span class="text-[10px] text-on-surface-variant/60">${review.date}</span>
+                    </div>
+                    <div class="flex items-center">
+                        ${starsHTML}
+                    </div>
+                </div>
+                <p class="text-sm text-on-surface-variant leading-relaxed">${review.comment}</p>
+                ${review.reply ? `
+                    <div class="bg-primary/5 border border-primary/20 rounded p-4 text-xs text-on-surface-variant">
+                        <span class="font-bold text-primary block mb-1 flex items-center gap-1">
+                            <span class="material-symbols-outlined text-[14px]">verified</span>
+                            Official Reply
+                        </span>
+                        ${review.reply}
+                    </div>
+                ` : ''}
+            `;
+            container.appendChild(card);
+        });
+    }
+
+    // Review Form Sinks & Stars
+    let chosenRating = 5;
+    window.setReviewRating = function(rating) {
+        chosenRating = rating;
+        document.getElementById('review-rating').value = rating;
+        highlightStars(rating);
+    };
+
+    window.highlightStars = function(rating) {
+        const stars = document.querySelectorAll('.star-input');
+        stars.forEach((star, index) => {
+            if (index < rating) {
+                star.style.variationSettings = "'FILL' 1";
+            } else {
+                star.style.variationSettings = "'FILL' 0";
+            }
+        });
+    };
+
+    window.resetStars = function() {
+        highlightStars(chosenRating);
+    };
+
+    document.getElementById('submit-review-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('review-name').value.trim();
+        const rating = parseInt(document.getElementById('review-rating').value) || 5;
+        const comment = document.getElementById('review-comment').value.trim();
+
+        if (name && comment) {
+            GulabGanjStore.addReview(name, rating, comment);
+            alert('Thank you for your valuable feedback!');
+            document.getElementById('submit-review-form').reset();
+            chosenRating = 5;
+            document.getElementById('review-rating').value = '5';
+            resetStars();
+            renderDynamicReviews();
+        }
+    });
+
+    // Listen to changes in the database and re-render
+    window.addEventListener("gg_store_updated", () => {
+        renderDynamicMenu();
+        renderDynamicReviews();
+    });
+</script>
+</body>
+</html>
