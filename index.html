@@ -731,6 +731,7 @@ void main() {
                     <div class="relative">
                         <label class="block text-xs font-semibold text-primary uppercase tracking-widest mb-1">Number of Guests</label>
                         <select class="w-full bg-transparent border-0 border-b border-on-surface/40 focus:border-primary focus:ring-0 text-on-surface font-body-md py-2 px-0 transition-colors">
+                            <option value="1">1 Guest</option>
                             <option value="2">2 Guests</option>
                             <option value="4">4 Guests</option>
                             <option value="6">6 Guests</option>
@@ -747,14 +748,7 @@ void main() {
                     </div>
                     <div class="relative">
                         <label class="block text-xs font-semibold text-primary uppercase tracking-widest mb-1">Time</label>
-                        <select class="w-full bg-transparent border-0 border-b border-on-surface/40 focus:border-primary focus:ring-0 text-on-surface font-body-md py-2 px-0 transition-colors">
-                            <option value="12:00 PM">Lunch (12:00 PM)</option>
-                            <option value="1:30 PM">Lunch (01:30 PM)</option>
-                            <option value="3:00 PM">Lunch (03:00 PM)</option>
-                            <option value="7:00 PM">Dinner (07:00 PM)</option>
-                            <option value="8:30 PM">Dinner (08:30 PM)</option>
-                            <option value="10:00 PM">Dinner (10:00 PM)</option>
-                        </select>
+                        <input required type="time" step="300" class="w-full bg-transparent border-0 border-b border-on-surface/40 focus:border-primary focus:ring-0 text-on-surface font-body-md py-2 px-0 transition-colors"/>
                     </div>
                 </div>
                 
@@ -1006,9 +1000,9 @@ void main() {
         const stars = document.querySelectorAll('.star-input');
         stars.forEach((star, index) => {
             if (index < rating) {
-                star.style.variationSettings = "'FILL' 1";
+                star.style.fontVariationSettings = "'FILL' 1";
             } else {
-                star.style.variationSettings = "'FILL' 0";
+                star.style.fontVariationSettings = "'FILL' 0";
             }
         });
     };
