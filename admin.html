@@ -136,8 +136,14 @@
         <!-- TAB 1: MENU MANAGER -->
         <section id="tab-menu" class="tab-content space-y-8">
             <div class="flex justify-between items-center border-b border-outline-variant/30 pb-4">
-                <h1 class="font-display text-2xl text-on-surface">Menu Items Management</h1>
-                <span class="text-xs text-on-surface-variant">Manage food and beverages</span>
+                <div>
+                    <h1 class="font-display text-2xl text-on-surface">Menu Items Management</h1>
+                    <span class="text-xs text-on-surface-variant">Manage food and beverages</span>
+                </div>
+                <button id="clear-all-menu-btn" class="bg-transparent border border-primary text-primary px-4 py-2.5 rounded hover:bg-primary hover:text-on-primary transition-all font-semibold text-xs uppercase tracking-wider flex items-center gap-1 shadow-sm">
+                    <span class="material-symbols-outlined text-[16px]">delete_sweep</span>
+                    Clear All Menu
+                </button>
             </div>
             
             <!-- Add Item Form -->
@@ -157,9 +163,19 @@
                             <!-- Populated dynamically -->
                         </select>
                     </div>
-                    <div>
+                    <div id="price-standard-container">
                         <label class="block text-xs font-bold text-primary uppercase tracking-widest mb-1">Price (₹)</label>
                         <input required type="number" id="dish-price" class="w-full heritage-input py-2 px-0" placeholder="e.g. 580"/>
+                    </div>
+                    <div id="price-split-container" class="hidden grid grid-cols-2 gap-4">
+                        <div>
+                            <label id="price-half-label" class="block text-xs font-bold text-primary uppercase tracking-widest mb-1">Half Price (₹)</label>
+                            <input type="number" id="dish-price-half" class="w-full heritage-input py-2 px-0" placeholder="e.g. 180"/>
+                        </div>
+                        <div>
+                            <label id="price-full-label" class="block text-xs font-bold text-primary uppercase tracking-widest mb-1">Full Price (₹)</label>
+                            <input type="number" id="dish-price-full" class="w-full heritage-input py-2 px-0" placeholder="e.g. 280"/>
+                        </div>
                     </div>
                     <div>
                         <label class="block text-xs font-bold text-primary uppercase tracking-widest mb-1">Dish Image (File or URL)</label>
@@ -341,9 +357,19 @@
             </div>
             
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div>
+                <div id="edit-price-standard-container">
                     <label class="block text-xs font-bold text-primary uppercase tracking-widest mb-1">Price (₹)</label>
                     <input required type="number" id="edit-price" class="w-full heritage-input py-2 px-0"/>
+                </div>
+                <div id="edit-price-split-container" class="hidden grid grid-cols-2 gap-4">
+                    <div>
+                        <label id="edit-price-half-label" class="block text-xs font-bold text-primary uppercase tracking-widest mb-1">Half Price (₹)</label>
+                        <input type="number" id="edit-price-half" class="w-full heritage-input py-2 px-0"/>
+                    </div>
+                    <div>
+                        <label id="edit-price-full-label" class="block text-xs font-bold text-primary uppercase tracking-widest mb-1">Full Price (₹)</label>
+                        <input type="number" id="edit-price-full" class="w-full heritage-input py-2 px-0"/>
+                    </div>
                 </div>
                 <div>
                     <label class="block text-xs font-bold text-primary uppercase tracking-widest mb-1">Dish Image (File or URL)</label>
@@ -389,6 +415,43 @@
 <!-- Load Database Central Store Script -->
 <script src="js/data-store.js"></script>
 <script>
+    const multiPriceCategories = ['paneer-special', 'dal-special', 'beverages'];
+
+    function togglePriceInputs(categorySelectId, standardContainerId, splitContainerId, halfLabelId, fullLabelId) {
+        const catSelect = document.getElementById(categorySelectId);
+        const standardContainer = document.getElementById(standardContainerId);
+        const splitContainer = document.getElementById(splitContainerId);
+        const halfLabel = document.getElementById(halfLabelId);
+        const fullLabel = document.getElementById(fullLabelId);
+
+        if (!catSelect || !standardContainer || !splitContainer) return;
+
+        const val = catSelect.value;
+        const isMultiPrice = multiPriceCategories.includes(val);
+
+        if (isMultiPrice) {
+            standardContainer.classList.add('hidden');
+            splitContainer.classList.remove('hidden');
+            
+            if (val === 'beverages') {
+                if (halfLabel) halfLabel.textContent = "Small Price (₹)";
+                if (fullLabel) fullLabel.textContent = "Large Price (₹)";
+            } else {
+                if (halfLabel) halfLabel.textContent = "Half Price (₹)";
+                if (fullLabel) fullLabel.textContent = "Full Price (₹)";
+            }
+
+            const stdInput = standardContainer.querySelector('input');
+            if (stdInput) stdInput.required = false;
+        } else {
+            standardContainer.classList.remove('hidden');
+            splitContainer.classList.add('hidden');
+            
+            const stdInput = standardContainer.querySelector('input');
+            if (stdInput) stdInput.required = true;
+        }
+    }
+
     // Auth Logic
     const overlay = document.getElementById('login-overlay');
     const dashboard = document.getElementById('admin-dashboard');
@@ -479,10 +542,18 @@
             const catObj = categories.find(c => c.id === item.category);
             const catName = catObj ? catObj.name : item.category;
 
+            let priceText = `₹${item.price}`;
+            if (item.halfPrice || item.fullPrice) {
+                const parts = [];
+                if (item.halfPrice) parts.push(`Half/Small: ₹${item.halfPrice}`);
+                if (item.fullPrice) parts.push(`Full/Large: ₹${item.fullPrice}`);
+                priceText = parts.join(' | ');
+            }
+
             tr.innerHTML = `
                 <td class="py-3 px-4 font-semibold text-on-surface">${item.name}</td>
                 <td class="py-3 px-4 capitalize text-on-surface-variant">${catName}</td>
-                <td class="py-3 px-4 text-primary font-bold">₹${item.price}</td>
+                <td class="py-3 px-4 text-primary font-bold">${priceText}</td>
                 <td class="py-3 px-4">
                     ${item.tag ? `<span class="bg-primary/10 text-primary border border-primary/20 px-2.5 py-0.5 rounded text-[10px] uppercase font-bold">${item.tag}</span>` : '<span class="text-on-surface-variant/40">-</span>'}
                 </td>
@@ -500,11 +571,25 @@
         e.preventDefault();
         const name = document.getElementById('dish-name').value.trim();
         const category = document.getElementById('dish-category').value;
-        const price = parseInt(document.getElementById('dish-price').value);
         const image = document.getElementById('dish-image').value.trim();
         const tag = document.getElementById('dish-tag').value.trim();
         const elements = document.getElementById('dish-elements').value.trim();
         const description = document.getElementById('dish-desc').value.trim();
+
+        const multiPriceCategories = ['paneer-special', 'dal-special', 'beverages'];
+        const isMultiPrice = multiPriceCategories.includes(category);
+
+        let price = 0;
+        let halfPrice = null;
+        let fullPrice = null;
+
+        if (isMultiPrice) {
+            halfPrice = parseInt(document.getElementById('dish-price-half').value) || null;
+            fullPrice = parseInt(document.getElementById('dish-price-full').value) || null;
+            price = fullPrice || halfPrice || 0;
+        } else {
+            price = parseInt(document.getElementById('dish-price').value) || 0;
+        }
 
         const items = GulabGanjStore.getMenuItems();
         const newItem = {
@@ -512,6 +597,8 @@
             name: name,
             category: category,
             price: price,
+            halfPrice: halfPrice,
+            fullPrice: fullPrice,
             image: image,
             description: description,
             tag: tag,
@@ -521,6 +608,10 @@
         items.push(newItem);
         GulabGanjStore.saveMenuItems(items);
         document.getElementById('add-item-form').reset();
+        
+        // Reset price fields display
+        togglePriceInputs('dish-category', 'price-standard-container', 'price-split-container', 'price-half-label', 'price-full-label');
+        
         renderMenuTable();
     });
 
@@ -544,11 +635,19 @@
         document.getElementById('edit-id').value = item.id;
         document.getElementById('edit-name').value = item.name;
         document.getElementById('edit-category').value = item.category;
-        document.getElementById('edit-price').value = item.price;
+        
+        // Set standard and split prices
+        document.getElementById('edit-price').value = item.price || '';
+        document.getElementById('edit-price-half').value = item.halfPrice || '';
+        document.getElementById('edit-price-full').value = item.fullPrice || '';
+        
         document.getElementById('edit-image').value = item.image || '';
         document.getElementById('edit-tag').value = item.tag || '';
         document.getElementById('edit-elements').value = item.elements || '';
         document.getElementById('edit-desc').value = item.description;
+
+        // Toggle inputs in modal
+        togglePriceInputs('edit-category', 'edit-price-standard-container', 'edit-price-split-container', 'edit-price-half-label', 'edit-price-full-label');
 
         modal.classList.remove('hidden');
     };
@@ -562,16 +661,41 @@
         const id = document.getElementById('edit-id').value;
         const name = document.getElementById('edit-name').value.trim();
         const category = document.getElementById('edit-category').value;
-        const price = parseInt(document.getElementById('edit-price').value);
         const image = document.getElementById('edit-image').value.trim();
         const tag = document.getElementById('edit-tag').value.trim();
         const elements = document.getElementById('edit-elements').value.trim();
         const description = document.getElementById('edit-desc').value.trim();
 
+        const multiPriceCategories = ['paneer-special', 'dal-special', 'beverages'];
+        const isMultiPrice = multiPriceCategories.includes(category);
+
+        let price = 0;
+        let halfPrice = null;
+        let fullPrice = null;
+
+        if (isMultiPrice) {
+            halfPrice = parseInt(document.getElementById('edit-price-half').value) || null;
+            fullPrice = parseInt(document.getElementById('edit-price-full').value) || null;
+            price = fullPrice || halfPrice || 0;
+        } else {
+            price = parseInt(document.getElementById('edit-price').value) || 0;
+        }
+
         const items = GulabGanjStore.getMenuItems();
         const idx = items.findIndex(i => i.id === id);
         if (idx !== -1) {
-            items[idx] = { ...items[idx], name, category, price, image, tag, elements, description };
+            items[idx] = { 
+                ...items[idx], 
+                name, 
+                category, 
+                price, 
+                halfPrice, 
+                fullPrice, 
+                image, 
+                tag, 
+                elements, 
+                description 
+            };
             GulabGanjStore.saveMenuItems(items);
             modal.classList.add('hidden');
             renderMenuTable();
@@ -693,18 +817,54 @@
         const categories = GulabGanjStore.getCategories();
         const addSelect = document.getElementById('dish-category');
         const editSelect = document.getElementById('edit-category');
+        const addForm = document.getElementById('add-item-form');
+        const warningEl = document.getElementById('category-warning');
 
-        if (addSelect) {
-            addSelect.innerHTML = '';
-            categories.forEach(cat => {
-                addSelect.innerHTML += `<option value="${cat.id}">${cat.name}</option>`;
-            });
-        }
-        if (editSelect) {
-            editSelect.innerHTML = '';
-            categories.forEach(cat => {
-                editSelect.innerHTML += `<option value="${cat.id}">${cat.name}</option>`;
-            });
+        if (categories.length === 0) {
+            if (addSelect) addSelect.innerHTML = '<option value="">No categories available</option>';
+            if (editSelect) editSelect.innerHTML = '<option value="">No categories available</option>';
+            
+            // Show warning and disable submit
+            if (!warningEl && addForm) {
+                const newWarning = document.createElement('div');
+                newWarning.id = 'category-warning';
+                newWarning.className = 'md:col-span-3 bg-amber-500/10 border border-amber-500/20 text-amber-700 p-4 rounded text-xs font-semibold flex items-center gap-2 mb-4';
+                newWarning.innerHTML = `
+                    <span class="material-symbols-outlined text-[18px]">warning</span>
+                    Please add at least one category in the "Categories" tab before adding menu items.
+                `;
+                addForm.insertBefore(newWarning, addForm.firstChild);
+            }
+            
+            if (addForm) {
+                addForm.querySelectorAll('input, select, button[type="submit"]').forEach(el => {
+                    if (el.id !== 'dish-image-file') el.disabled = true;
+                });
+            }
+        } else {
+            if (warningEl) warningEl.remove();
+            
+            if (addForm) {
+                addForm.querySelectorAll('input, select, button[type="submit"]').forEach(el => {
+                    el.disabled = false;
+                });
+            }
+
+            if (addSelect) {
+                addSelect.innerHTML = '';
+                categories.forEach(cat => {
+                    addSelect.innerHTML += `<option value="${cat.id}">${cat.name}</option>`;
+                });
+            }
+            if (editSelect) {
+                editSelect.innerHTML = '';
+                categories.forEach(cat => {
+                    editSelect.innerHTML += `<option value="${cat.id}">${cat.name}</option>`;
+                });
+            }
+
+            // Initialize price inputs visibility
+            togglePriceInputs('dish-category', 'price-standard-container', 'price-split-container', 'price-half-label', 'price-full-label');
         }
     }
 
@@ -813,9 +973,37 @@
         reader.readAsDataURL(file);
     };
 
+
+
+    // Register dropdown change events
+    document.addEventListener('DOMContentLoaded', () => {
+        const dishCategory = document.getElementById('dish-category');
+        const editCategory = document.getElementById('edit-category');
+
+        if (dishCategory) {
+            dishCategory.addEventListener('change', () => {
+                togglePriceInputs('dish-category', 'price-standard-container', 'price-split-container', 'price-half-label', 'price-full-label');
+            });
+        }
+
+        if (editCategory) {
+            editCategory.addEventListener('change', () => {
+                togglePriceInputs('edit-category', 'edit-price-standard-container', 'edit-price-split-container', 'edit-price-half-label', 'edit-price-full-label');
+            });
+        }
+    });
+
     // Listen to changes in the database and re-render if logged in
     window.addEventListener("gg_store_updated", () => {
         if (sessionStorage.getItem('gg_admin_logged_in') === 'true') {
+            initDashboard();
+        }
+    });
+
+    document.getElementById('clear-all-menu-btn').addEventListener('click', () => {
+        if (confirm('WARNING: This will delete ALL menu items and categories permanently. Are you sure you want to proceed?')) {
+            GulabGanjStore.saveMenuItems([]);
+            GulabGanjStore.saveCategories([]);
             initDashboard();
         }
     });
