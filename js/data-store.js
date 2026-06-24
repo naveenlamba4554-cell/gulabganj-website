@@ -41,7 +41,7 @@
         { id: "mushroom-stuff-tikka", name: "Mushroom Stuff Tikka", category: "tandoor-special", price: 250, description: "Stuffed fresh mushrooms grilled to perfection." },
 
         // Chaap Special
-        { id: "tandoori-chaap", name: "Tandoori Chaap", category: "chaap-special", price: 180, description: "Soyabean chaap marinated in yogurt and traditional spices." },
+        { id: "tandoori-chaap", name: "Tandoori Chaap", category: "chaap-special", price: 180, tag: "Signature", image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBMNRWw_fhuNa7NDPXqRKONtqmNcCjZg2NBkBAXurviVmfQTbpY3EmrvLwc9kZLkUzDHBUEnaA82OOAtckkGE6TO8d9FpD-sYR4Vvme9w8X1q2g3V7lgr-e7cYiIo92MOd3sWFYYLX3sqYt3n7VuROCG5LpelbAb3LtMM9bKttlrKEZO0khUsJamQw5TB2lFEqTPQLPCgN_RnTRELqQe8dtl9lvYxrzDrqH8hBw7kycYP1vQW0dYujQ2hbajoqPzZatg6zX_6FaJtQ", description: "Smoky, spiced soya chaap chunks marinated in rich spiced yogurt and roasted over charcoal in our traditional clay oven." },
         { id: "malai-chaap", name: "Malai Chaap", category: "chaap-special", price: 200, description: "Chaap marinated in cream, cardamom, and cashew paste." },
         { id: "achari-chaap", name: "Achari Chaap", category: "chaap-special", price: 190, description: "Chaap infused with tangy pickle marination." },
         { id: "afghani-chaap", name: "Afghani Chaap", category: "chaap-special", price: 200, description: "Mildly spiced creamy Afghani style roasted chaap." },
@@ -98,7 +98,7 @@
         { id: "mix-sauce-pasta", name: "Mix Sauce Pasta", category: "pasta", price: 180, description: "Pasta in a blend of creamy white and tangy red sauce." },
 
         // Paneer Special
-        { id: "shahi-paneer", name: "Shahi Paneer", category: "paneer-special", price: 250, halfPrice: 160, fullPrice: 250, description: "Cottage cheese in a rich, creamy royal gravy." },
+        { id: "shahi-paneer", name: "Shahi Paneer", category: "paneer-special", price: 250, halfPrice: 160, fullPrice: 250, tag: "Signature", image: "https://lh3.googleusercontent.com/aida-public/AB6AXuC_DoPiLSeag4Do3eCtj_-rkvbV94KuU9GiRtZ3edTlMCwSYJzrTjX7vc-IQuzPgJTasTsuRwx7XmjBt82iSQmTWDvKYCIum_NykP1DzdM7IIlYLIbgZib2UD4tfWHo5IVZmuV9la2UdKCldLIykuNiXi9ATXZ4rakh_AmpUWFgK3imZm9H6uSzLoKpcyDwxWqfcM-d82dq_uFLZf6eFlNeo4desnpW2_6ORWw8aEtT-2IHW8yCZYAu3uMcrTN6WaVoppkD91XruZ8", description: "Our royal cottage cheese preparation in a rich, creamy tomato and cashew gravy, infused with aromatic spices." },
         { id: "matar-paneer", name: "Matar Paneer", category: "paneer-special", price: 240, halfPrice: 150, fullPrice: 240, description: "Paneer and green peas cooked in a spiced tomato gravy." },
         { id: "kadhai-paneer", name: "Kadhai Paneer", category: "paneer-special", price: 280, halfPrice: 180, fullPrice: 280, description: "Paneer tossed with bell peppers and freshly ground kadhai spice." },
         { id: "paneer-butter-masala", name: "Paneer Butter Masala", category: "paneer-special", price: 280, halfPrice: 180, fullPrice: 280, tag: "Signature", description: "Paneer chunks simmered in a velvety buttery tomato gravy." },
@@ -150,7 +150,7 @@
         { id: "black-coffee", name: "Black Coffee", category: "beverages", price: 30, halfPrice: 30, fullPrice: null, description: "Strong black coffee without milk." },
         { id: "green-tea", name: "Green Tea", category: "beverages", price: 30, halfPrice: 30, fullPrice: null, description: "Healthy antioxidant green tea." },
         { id: "cold-coffee", name: "Cold Coffee", category: "beverages", price: 99, halfPrice: 99, fullPrice: null, description: "Chilled milk and coffee blend." },
-        { id: "gg-special-gulab-lassi", name: "Gulab Ganj Special Gulab Lassi", category: "beverages", price: 99, halfPrice: 99, fullPrice: null, tag: "Signature", description: "Yogurt blended with sweet rose syrup, almonds, and petals." },
+        { id: "gg-special-gulab-lassi", name: "Gulab Ganj Special Gulab Lassi", category: "beverages", price: 99, halfPrice: 99, fullPrice: null, tag: "Signature", image: "https://lh3.googleusercontent.com/aida-public/AB6AXuB0nX0DyNId2ZDXHZsCKj77h__lJU4kfRwa04Mmn-bDT1r2olNixHbOCd8LX_Ev0yGC1Zn7yvFuQK6UCTqukRhgCeXPTOW56BB5EHUCb_6WIVYE0cHgO1pfgtFvz4rSqhqcMfgXwuCQvVIVVQL2lOiDnwziyFqmFGVBMfsgt_uhv9Y4kmU-vMcSMIQg7OvWAgE55iY4iJrJA8sdS-UMpyUhfKgA59SEgUetmV5h8OKLkflxP4rRxvE396FlqulxcmB3oj_q5QeeobE", description: "Signature refreshing creamy yogurt drink churned with rose syrup and cardamoms, topped with chopped almonds and rose petals." },
         { id: "sweet-lassi", name: "Sweet Lassi", category: "beverages", price: 70, halfPrice: 70, fullPrice: null, description: "Traditional sweet churned yogurt drink." },
         { id: "salted-lassi", name: "Salted Lassi", category: "beverages", price: 60, halfPrice: 60, fullPrice: null, description: "Chilled yogurt drink flavored with roasted cumin and salt." },
 
@@ -228,6 +228,7 @@
         { id: "gulab-jamun-2pcs", name: "Gulab Jamun (2 pcs)", category: "sweet-dish", price: 60, description: "Hot milk-solid dumplings soaked in sugar syrup." },
         { id: "sponge-rasgulla-2pcs", name: "Sponge Rasgulla (2 pcs)", category: "sweet-dish", price: 60, description: "Soft spongy cottage cheese balls soaked in light sugar syrup." },
         { id: "gajar-halwa", name: "Gajar Halwa (Seasonal)", category: "sweet-dish", price: 99, description: "Traditional carrot pudding slow-cooked in milk and Desi Ghee." },
+        { id: "kesari-phirni", name: "Kesari Phirni", category: "sweet-dish", price: 99, tag: "Signature", image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDEPwsuOu9vJvpcW_RImJDul7AaW9Ddq864hoiy4sFWLQg_8ZFABdmEwtl0CjSUImmwRdCL2p1H9bI575rKCDBxZyIUf4Bb0LGbyXhqvYjo6u-B7hvaoGLn_Lak4H6pNfDfbmU_9ORp23F8c_FJZ7o1tTnqycNtea7ra070m10D7ueG-iYWJjhrFlvF_vS6P3KeBmcfXODXufMbCRXN5F6FJjapo3rDN-DW8i415cMA5DbjSU4fSLGKER34Jkfoh5V6N12Buc5XzoQ", description: "Slow-cooked ground rice pudding flavored with premium saffron threads and cardamom, set in clay pots." },
 
         // Ice Cream
         { id: "vanilla-icecream", name: "Vanilla", category: "ice-cream", price: 60, description: "Classic cold sweet vanilla scoop." },
@@ -289,14 +290,22 @@
     // Initialize Store
     const store = {
         getMenuItems: function () {
-            return getStoredData("gg_menu_items_v4", DEFAULT_MENU_ITEMS);
+            const isadmin = (typeof window !== "undefined" && window.sessionStorage && window.sessionStorage.getItem("gg_admin_logged_in") === "true") || (typeof window !== "undefined" && window.location.pathname.includes("admin.html"));
+            if (isadmin) {
+                return getStoredData("gg_menu_items_v4", DEFAULT_MENU_ITEMS);
+            }
+            return DEFAULT_MENU_ITEMS;
         },
         saveMenuItems: function (items) {
             localStorage.setItem("gg_menu_items_v4", JSON.stringify(items));
             window.dispatchEvent(new Event("gg_store_updated"));
         },
         getCategories: function () {
-            return getStoredData("gg_menu_categories_v4", DEFAULT_CATEGORIES);
+            const isadmin = (typeof window !== "undefined" && window.sessionStorage && window.sessionStorage.getItem("gg_admin_logged_in") === "true") || (typeof window !== "undefined" && window.location.pathname.includes("admin.html"));
+            if (isadmin) {
+                return getStoredData("gg_menu_categories_v4", DEFAULT_CATEGORIES);
+            }
+            return DEFAULT_CATEGORIES;
         },
         saveCategories: function (categories) {
             localStorage.setItem("gg_menu_categories_v4", JSON.stringify(categories));
@@ -326,17 +335,32 @@
             }
         },
         getContactInfo: function () {
-            return getStoredData("gg_contact_info_royale", DEFAULT_CONTACT_INFO);
+            const isadmin = (typeof window !== "undefined" && window.sessionStorage && window.sessionStorage.getItem("gg_admin_logged_in") === "true") || (typeof window !== "undefined" && window.location.pathname.includes("admin.html"));
+            if (isadmin) {
+                return getStoredData("gg_contact_info_royale", DEFAULT_CONTACT_INFO);
+            }
+            return DEFAULT_CONTACT_INFO;
         },
         saveContactInfo: function (info) {
             localStorage.setItem("gg_contact_info_royale", JSON.stringify(info));
             window.dispatchEvent(new Event("gg_store_updated"));
         },
         getReviews: function () {
-            return getStoredData("gg_reviews_royale", DEFAULT_REVIEWS);
+            const isadmin = (typeof window !== "undefined" && window.sessionStorage && window.sessionStorage.getItem("gg_admin_logged_in") === "true") || (typeof window !== "undefined" && window.location.pathname.includes("admin.html"));
+            if (isadmin) {
+                return getStoredData("gg_reviews_royale", DEFAULT_REVIEWS);
+            }
+            const localReviews = getStoredData("gg_customer_self_reviews", []);
+            return [...localReviews, ...DEFAULT_REVIEWS];
         },
         saveReviews: function (reviews) {
-            localStorage.setItem("gg_reviews_royale", JSON.stringify(reviews));
+            const isadmin = (typeof window !== "undefined" && window.sessionStorage && window.sessionStorage.getItem("gg_admin_logged_in") === "true") || (typeof window !== "undefined" && window.location.pathname.includes("admin.html"));
+            if (isadmin) {
+                localStorage.setItem("gg_reviews_royale", JSON.stringify(reviews));
+            } else {
+                const selfReviews = reviews.filter(r => !DEFAULT_REVIEWS.some(dr => dr.id === r.id));
+                localStorage.setItem("gg_customer_self_reviews", JSON.stringify(selfReviews));
+            }
             window.dispatchEvent(new Event("gg_store_updated"));
         },
         addReview: function (name, rating, comment) {

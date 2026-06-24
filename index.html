@@ -1306,17 +1306,35 @@ void main() {
         }
         section.classList.remove('hidden');
 
-        // Filter items: prioritize those with tag "Signature", "Special", etc.
+        // Filter items: prioritize those with tag "Signature", "Special", etc. and an image
         const signatureItems = items.filter(item => 
-            item.tag && (
+            item.image && item.tag && (
                 item.tag.toLowerCase().includes('signature') || 
                 item.tag.toLowerCase().includes('special') || 
                 item.tag.toLowerCase().includes('chef')
             )
         );
 
-        // Combine with other items to have fallback options
-        const displayItems = [...signatureItems];
+        // Secondary signature filter: signature items without images
+        const signatureWithoutImage = items.filter(item => 
+            !item.image && item.tag && (
+                item.tag.toLowerCase().includes('signature') || 
+                item.tag.toLowerCase().includes('special') || 
+                item.tag.toLowerCase().includes('chef')
+            )
+        );
+
+        // Tertiary filter: other items with images
+        const otherWithImage = items.filter(item => 
+            item.image && !signatureItems.find(i => i.id === item.id)
+        );
+
+        // Combine everything in order of priority:
+        // 1. Signatures with images
+        // 2. Others with images
+        // 3. Signatures without images
+        // 4. Anything else
+        const displayItems = [...signatureItems, ...otherWithImage, ...signatureWithoutImage];
         items.forEach(item => {
             if (!displayItems.find(i => i.id === item.id)) {
                 displayItems.push(item);

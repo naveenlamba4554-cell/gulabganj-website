@@ -121,6 +121,10 @@
                 <span class="material-symbols-outlined text-[20px]">category</span>
                 Categories
             </button>
+            <button data-target="tab-deploy" class="tab-btn w-full text-left px-4 py-3 rounded text-on-surface-variant hover:bg-outline-variant/20 transition-colors flex items-center gap-3">
+                <span class="material-symbols-outlined text-[20px]">cloud_sync</span>
+                Deploy Changes
+            </button>
         </nav>
         
         <div class="border-t border-outline-variant/40 pt-4">
@@ -328,6 +332,75 @@
                 </div>
             </div>
         </section>
+
+        <!-- TAB 5: DEPLOY CHANGES -->
+        <section id="tab-deploy" class="tab-content space-y-8 hidden">
+            <div class="flex justify-between items-center border-b border-outline-variant/30 pb-4">
+                <div>
+                    <h1 class="font-display text-2xl text-on-surface">Deploy Changes to Production</h1>
+                    <span class="text-xs text-on-surface-variant">Export changes to update the website globally</span>
+                </div>
+            </div>
+            
+            <div class="bg-surface-container-low border border-outline-variant/40 p-6 md:p-8 rounded shadow-sm space-y-6 max-w-4xl">
+                <div class="space-y-2">
+                    <h2 class="font-display text-lg text-primary flex items-center gap-2">
+                        <span class="material-symbols-outlined text-[24px]">cloud_sync</span>
+                        Synchronize Database Across Devices
+                    </h2>
+                    <p class="font-body-md text-on-surface-variant text-sm">
+                        Because this is a secure, static website, additions or edits you make in this browser are initially saved to your local browser storage. To make your changes visible to all customers on all devices, you need to export the database file and push it to GitHub.
+                    </p>
+                </div>
+                
+                <div class="gold-divider w-full"></div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                    <div class="space-y-4 text-left">
+                        <h3 class="font-semibold text-on-surface text-base flex items-center gap-2">
+                            <span class="bg-primary/10 text-primary w-6 h-6 rounded-full flex items-center justify-center text-xs">1</span>
+                            Download Database File
+                        </h3>
+                        <p class="text-xs text-on-surface-variant leading-relaxed">
+                            Click the button below to download the updated <strong>data-store.js</strong> file. This file contains all your current menu items, categories, reviews, and contact settings.
+                        </p>
+                        <button onclick="downloadDataStoreFile()" class="bg-primary text-on-primary px-5 py-3 rounded hover:bg-primary-container transition-all font-bold uppercase text-xs tracking-wider flex items-center gap-2 shadow">
+                            <span class="material-symbols-outlined text-[18px]">download</span>
+                            Download data-store.js
+                        </button>
+                    </div>
+                    
+                    <div class="space-y-4 text-left">
+                        <h3 class="font-semibold text-on-surface text-base flex items-center gap-2">
+                            <span class="bg-primary/10 text-primary w-6 h-6 rounded-full flex items-center justify-center text-xs">2</span>
+                            Apply to Workspace & Push
+                        </h3>
+                        <ol class="list-decimal list-inside text-xs text-on-surface-variant space-y-2 leading-relaxed">
+                            <li>Move the downloaded <strong>data-store.js</strong> file into the <code>/js/</code> folder of your website project workspace, replacing the existing file.</li>
+                            <li>Commit and push the changes to your GitHub repository:
+                                <pre class="bg-surface p-2.5 rounded mt-2 border border-outline-variant/30 text-[10px] font-mono select-all w-full overflow-x-auto text-on-surface-variant">git add js/data-store.js
+git commit -m "Update menu items database"
+git push origin main</pre>
+                            </li>
+                            <li>Once pushed, the website will load the updated data for every user on any device!</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="gold-divider w-full"></div>
+
+                <div class="space-y-3 text-left">
+                    <div class="flex justify-between items-center">
+                        <h3 class="font-semibold text-on-surface text-sm uppercase tracking-wider">Raw data-store.js Preview</h3>
+                        <button onclick="copyDataStoreCode()" class="text-xs text-primary hover:text-secondary font-bold uppercase tracking-wide flex items-center gap-1">
+                            <span class="material-symbols-outlined text-[16px]">content_copy</span>
+                            Copy to Clipboard
+                        </button>
+                    </div>
+                    <textarea id="db-code-preview" readonly class="w-full bg-transparent border border-outline-variant/40 rounded p-4 font-mono text-[11px] leading-relaxed text-on-surface-variant h-64 focus:ring-0 focus:border-outline-variant/40"></textarea>
+                </div>
+            </div>
+        </section>
     </main>
 </div>
 
@@ -509,6 +582,10 @@
                     screen.classList.add('hidden');
                 }
             });
+
+            if (target === 'tab-deploy') {
+                updateDataStorePreview();
+            }
         });
     });
 
@@ -1007,6 +1084,205 @@
             initDashboard();
         }
     });
+
+    // Deploy / Export data-store.js logic
+    window.generateDataStoreCode = function() {
+        const categories = GulabGanjStore.getCategories();
+        const menuItems = GulabGanjStore.getMenuItems();
+        const contactInfo = GulabGanjStore.getContactInfo();
+        const reviews = GulabGanjStore.getReviews();
+
+        const jsCode = `// Centralized Data Store for The Gulab Ganj Restaurant
+// Persists menu items, contact details, reviews, and admin replies using localStorage.
+
+(function () {
+    const DEFAULT_CATEGORIES = ${JSON.stringify(categories, null, 8)};
+
+    const DEFAULT_MENU_ITEMS = ${JSON.stringify(menuItems, null, 8)};
+
+    const DEFAULT_CONTACT_INFO = ${JSON.stringify(contactInfo, null, 8)};
+
+    const DEFAULT_REVIEWS = ${JSON.stringify(reviews, null, 8)};
+
+    function getStoredData(key, fallback) {
+        if (typeof window !== "undefined" && window.localStorage) {
+            const data = localStorage.getItem(key);
+            if (data) {
+                try {
+                    return JSON.parse(data);
+                } catch (e) {
+                    console.error("Error parsing storage key " + key, e);
+                }
+            }
+            // Initialize storage
+            localStorage.setItem(key, JSON.stringify(fallback));
+            return fallback;
+        }
+        return fallback;
+    }
+
+    // Initialize Store
+    const store = {
+        getMenuItems: function () {
+            const isadmin = (typeof window !== "undefined" && window.sessionStorage && window.sessionStorage.getItem("gg_admin_logged_in") === "true") || (typeof window !== "undefined" && window.location.pathname.includes("admin.html"));
+            if (isadmin) {
+                return getStoredData("gg_menu_items_v4", DEFAULT_MENU_ITEMS);
+            }
+            return DEFAULT_MENU_ITEMS;
+        },
+        saveMenuItems: function (items) {
+            localStorage.setItem("gg_menu_items_v4", JSON.stringify(items));
+            window.dispatchEvent(new Event("gg_store_updated"));
+        },
+        getCategories: function () {
+            const isadmin = (typeof window !== "undefined" && window.sessionStorage && window.sessionStorage.getItem("gg_admin_logged_in") === "true") || (typeof window !== "undefined" && window.location.pathname.includes("admin.html"));
+            if (isadmin) {
+                return getStoredData("gg_menu_categories_v4", DEFAULT_CATEGORIES);
+            }
+            return DEFAULT_CATEGORIES;
+        },
+        saveCategories: function (categories) {
+            localStorage.setItem("gg_menu_categories_v4", JSON.stringify(categories));
+            window.dispatchEvent(new Event("gg_store_updated"));
+        },
+        addCategory: function (name) {
+            const categories = this.getCategories();
+            const id = name.toLowerCase().trim().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+            if (!id || categories.find(c => c.id === id)) {
+                return false;
+            }
+            categories.push({ id, name });
+            this.saveCategories(categories);
+            return true;
+        },
+        deleteCategory: function (id) {
+            let categories = this.getCategories();
+            categories = categories.filter(c => c.id !== id);
+            this.saveCategories(categories);
+        },
+        updateCategory: function (id, newName) {
+            const categories = this.getCategories();
+            const cat = categories.find(c => c.id === id);
+            if (cat) {
+                cat.name = newName;
+                this.saveCategories(categories);
+            }
+        },
+        getContactInfo: function () {
+            const isadmin = (typeof window !== "undefined" && window.sessionStorage && window.sessionStorage.getItem("gg_admin_logged_in") === "true") || (typeof window !== "undefined" && window.location.pathname.includes("admin.html"));
+            if (isadmin) {
+                return getStoredData("gg_contact_info_royale", DEFAULT_CONTACT_INFO);
+            }
+            return DEFAULT_CONTACT_INFO;
+        },
+        saveContactInfo: function (info) {
+            localStorage.setItem("gg_contact_info_royale", JSON.stringify(info));
+            window.dispatchEvent(new Event("gg_store_updated"));
+        },
+        getReviews: function () {
+            const isadmin = (typeof window !== "undefined" && window.sessionStorage && window.sessionStorage.getItem("gg_admin_logged_in") === "true") || (typeof window !== "undefined" && window.location.pathname.includes("admin.html"));
+            if (isadmin) {
+                return getStoredData("gg_reviews_royale", DEFAULT_REVIEWS);
+            }
+            const localReviews = getStoredData("gg_customer_self_reviews", []);
+            return [...localReviews, ...DEFAULT_REVIEWS];
+        },
+        saveReviews: function (reviews) {
+            const isadmin = (typeof window !== "undefined" && window.sessionStorage && window.sessionStorage.getItem("gg_admin_logged_in") === "true") || (typeof window !== "undefined" && window.location.pathname.includes("admin.html"));
+            if (isadmin) {
+                localStorage.setItem("gg_reviews_royale", JSON.stringify(reviews));
+            } else {
+                const selfReviews = reviews.filter(r => !DEFAULT_REVIEWS.some(dr => dr.id === r.id));
+                localStorage.setItem("gg_customer_self_reviews", JSON.stringify(selfReviews));
+            }
+            window.dispatchEvent(new Event("gg_store_updated"));
+        },
+        addReview: function (name, rating, comment) {
+            const reviews = this.getReviews();
+            const newReview = {
+                id: Date.now(),
+                name: name,
+                rating: parseInt(rating) || 5,
+                comment: comment,
+                date: new Date().toISOString().split("T")[0],
+                reply: ""
+            };
+            reviews.unshift(newReview); // Newest first
+            this.saveReviews(reviews);
+            return newReview;
+        },
+        deleteReview: function (id) {
+            let reviews = this.getReviews();
+            reviews = reviews.filter(r => r.id != id);
+            this.saveReviews(reviews);
+        },
+        addReply: function (id, replyText) {
+            const reviews = this.getReviews();
+            const review = reviews.find(r => r.id == id);
+            if (review) {
+                review.reply = replyText;
+                this.saveReviews(reviews);
+            }
+        }
+    };
+
+    // Expose store globally
+    window.GulabGanjStore = store;
+
+    // Auto-populate dynamic contact info in footers and headers on DOM ready
+    document.addEventListener("DOMContentLoaded", function () {
+        // Update contact selectors
+        function updateDOM() {
+            const info = store.getContactInfo();
+            
+            document.querySelectorAll(".gg-dynamic-phone").forEach(el => el.textContent = info.phone);
+            document.querySelectorAll(".gg-dynamic-email").forEach(el => el.textContent = info.email);
+            document.querySelectorAll(".gg-dynamic-hours").forEach(el => el.textContent = info.hours);
+            document.querySelectorAll(".gg-dynamic-address").forEach(el => el.textContent = info.address);
+
+            document.querySelectorAll(".gg-dynamic-phone-link").forEach(el => {
+                el.setAttribute("href", "tel:" + info.phone.replace(/\\\\s+/g, ""));
+            });
+            document.querySelectorAll(".gg-dynamic-email-link").forEach(el => {
+                el.setAttribute("href", "mailto:" + info.email);
+            });
+        }
+
+        updateDOM();
+        window.addEventListener("gg_store_updated", updateDOM);
+    });
+})();
+`;
+        return jsCode;
+    };
+
+    window.downloadDataStoreFile = function() {
+        const code = generateDataStoreCode();
+        const blob = new Blob([code], { type: 'application/javascript;charset=utf-8' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'data-store.js';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    };
+
+    window.copyDataStoreCode = function() {
+        const code = generateDataStoreCode();
+        navigator.clipboard.writeText(code).then(() => {
+            alert('Code copied to clipboard!');
+        }).catch(err => {
+            console.error('Failed to copy: ', err);
+            alert('Failed to copy code. Please select and copy manually from preview window.');
+        });
+    };
+
+    window.updateDataStorePreview = function() {
+        const preview = document.getElementById('db-code-preview');
+        if (preview) {
+            preview.value = generateDataStoreCode();
+        }
+    };
 </script>
 </body>
 </html>
